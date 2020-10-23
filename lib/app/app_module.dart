@@ -10,6 +10,8 @@ import 'package:ilera/app/repositories/token_repository.dart';
 import 'package:ilera/app/utils/constants.dart';
 
 import 'app_controller.dart';
+import 'modules/intro/intro_module.dart';
+import 'modules/splash/splash_module.dart';
 
 class AppModule extends MainModule {
   @override
@@ -25,8 +27,10 @@ class AppModule extends MainModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter(Modular.initialRoute, module: HomeModule()),
+        ModularRouter('/splash', module: SplashModule()),
+        ModularRouter('/intro', module: IntroModule()),
         ModularRouter('/login', module: LoginModule()),
+        ModularRouter('/home', module: HomeModule()),
       ];
 
   @override

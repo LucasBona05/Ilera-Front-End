@@ -10,7 +10,7 @@ class AppWidget extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/login',
+      initialRoute: '/splash',
       onGenerateRoute: Modular.generateRoute,
       debugShowCheckedModeBanner: false,
     );
