@@ -1,7 +1,7 @@
 import 'package:ilera/app/models/imagem_model.dart';
 import 'package:ilera/app/models/pessoa_model.dart';
 
-class NutricionistaModel {
+class InstrutorModel {
   String nomeCompleto;
   String email;
   String cpf;
@@ -9,9 +9,9 @@ class NutricionistaModel {
   ImagemModel fotoDePerfil;
   int id;
   List<AlunoModel> alunos;
-  String crn;
+  String cref;
 
-  NutricionistaModel(
+  InstrutorModel(
       {this.nomeCompleto,
       this.email,
       this.cpf,
@@ -19,9 +19,9 @@ class NutricionistaModel {
       this.fotoDePerfil,
       this.id,
       this.alunos,
-      this.crn});
+      this.cref});
 
-  NutricionistaModel.fromJson(Map<String, dynamic> json) {
+  InstrutorModel.fromJson(Map<String, dynamic> json) {
     nomeCompleto = json['nomeCompleto'];
     email = json['email'];
     cpf = json['cpf'];
@@ -36,7 +36,7 @@ class NutricionistaModel {
         alunos.add(new AlunoModel.fromJson(v));
       });
     }
-    crn = json['crn'];
+    cref = json['cref'];
   }
 
   Map<String, dynamic> toJson() {
@@ -52,7 +52,7 @@ class NutricionistaModel {
     if (this.alunos != null) {
       data['alunos'] = this.alunos.map((v) => v.toJson()).toList();
     }
-    data['crn'] = this.crn;
+    data['cref'] = this.cref;
     return data;
   }
 }
