@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:ilera/app/modules/intro/intro_page.dart';
 import 'package:ilera/app/utils/fade_animation.dart';
 
 import '../../utils/constants.dart';
-import '../login/login_page.dart';
 
 class SplashPage extends StatefulWidget {
   @override

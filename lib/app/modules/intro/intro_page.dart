@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:ilera/app/utils/constants.dart';
 import 'package:ilera/app/utils/fade_animation.dart';
 
@@ -31,8 +30,24 @@ class _IntroPageState extends State<IntroPage> {
         child: PageView(
           controller: _controller,
           children: [
-            FadeAnimation(0.01, PageOne()),
-            FadeAnimation(0.01, PageTwo()),
+            FadeAnimation(0.01, PageOne(
+              onPressed: () {
+                _controller.animateToPage(
+                  1,
+                  duration: Duration(milliseconds: 200),
+                  curve: Curves.bounceInOut,
+                );
+              },
+            )),
+            FadeAnimation(0.01, PageTwo(
+              onPressed: () {
+                _controller.animateToPage(
+                  2,
+                  duration: Duration(milliseconds: 200),
+                  curve: Curves.bounceInOut,
+                );
+              },
+            )),
             FadeAnimation(0.01, PageThree()),
           ],
         ),
@@ -42,7 +57,8 @@ class _IntroPageState extends State<IntroPage> {
 }
 
 class PageOne extends StatelessWidget {
-  const PageOne({Key key}) : super(key: key);
+  final Function onPressed;
+  const PageOne({Key key, this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +73,7 @@ class PageOne extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 190, 0, 0),
           child: Column(
             children: [
-              FadeAnimation(0.30, SvgPicture.asset('assets/svg/tela_1.svg')),
+              FadeAnimation(0.30, Image.asset('assets/png/tela_1.png')),
               SizedBox(height: height * 0.08),
               FadeAnimation(
                   0.50,
@@ -70,33 +86,34 @@ class PageOne extends StatelessWidget {
                   )),
               SizedBox(height: height * 0.1),
               FadeAnimation(
-                  0.70,
-                  SizedBox(
-                    width: 168,
-                    height: 49,
-                    child: RaisedButton(
-                      elevation: 10,
-                      onPressed: () {},
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(25.0),
-                      ),
-                      color: Constants.COLORS[0],
-                      textColor: Constants.COLORS[1],
-                      child: Row(
-                        children: [
-                          SizedBox(
-                            width: 30,
-                          ),
-                          Text("next".toUpperCase(),
-                              style: TextStyle(fontSize: 20)),
-                          SizedBox(
-                            width: 10,
-                          ),
-                          Icon(Icons.arrow_forward_ios),
-                        ],
-                      ),
+                0.70,
+                SizedBox(
+                  width: 168,
+                  height: 49,
+                  child: RaisedButton(
+                    elevation: 10,
+                    onPressed: onPressed,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(25.0),
                     ),
-                  )),
+                    color: Constants.COLORS[0],
+                    textColor: Constants.COLORS[1],
+                    child: Row(
+                      children: [
+                        SizedBox(
+                          width: 30,
+                        ),
+                        Text("next".toUpperCase(),
+                            style: TextStyle(fontSize: 20)),
+                        SizedBox(
+                          width: 10,
+                        ),
+                        Icon(Icons.arrow_forward_ios),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
             ],
           ),
         ),
@@ -106,7 +123,8 @@ class PageOne extends StatelessWidget {
 }
 
 class PageTwo extends StatelessWidget {
-  const PageTwo({Key key}) : super(key: key);
+  final Function onPressed;
+  const PageTwo({Key key, this.onPressed}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -121,7 +139,7 @@ class PageTwo extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 220, 0, 0),
           child: Column(
             children: [
-              FadeAnimation(0.3, SvgPicture.asset('assets/svg/tela_2.svg')),
+              FadeAnimation(0.3, Image.asset('assets/png/tela_2.png')),
               SizedBox(height: height * 0.11),
               FadeAnimation(
                   0.5,
@@ -140,7 +158,7 @@ class PageTwo extends StatelessWidget {
                     height: 49,
                     child: RaisedButton(
                       elevation: 10,
-                      onPressed: () {},
+                      onPressed: onPressed,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(25.0),
                       ),
@@ -185,7 +203,7 @@ class PageThree extends StatelessWidget {
           padding: const EdgeInsets.fromLTRB(0, 190, 0, 0),
           child: Column(
             children: [
-              FadeAnimation(0.3, SvgPicture.asset('assets/svg/tela_3.svg')),
+              FadeAnimation(0.3, Image.asset('assets/png/tela_3.png')),
               SizedBox(height: height * 0.09),
               FadeAnimation(
                   0.5,
