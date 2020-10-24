@@ -17,7 +17,7 @@ class HomeModule extends ChildModule {
                   alunoModel: args.data,
                   title: args.data.toString(),
                 )),
-      ];
+];
 
   static Inject get to => Inject<HomeModule>.of();
 }
