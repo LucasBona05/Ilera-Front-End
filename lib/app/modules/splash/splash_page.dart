@@ -39,8 +39,8 @@ class _SplashPageState extends State<SplashPage> {
             color: Constants.COLORS[4],
           ),
           Center(
-              child:
-                  FadeAnimation(0.70, Image.asset('assets/png/logo_nome.png'))),
+              child: FadeAnimation(
+                  0.70, Image.asset('assets/images/png/logo_nome.png'))),
         ],
       ),
     );
