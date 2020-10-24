@@ -196,6 +196,8 @@ class EmailInputButton extends StatelessWidget {
   }
 }
 
+
+//TODO COLOCAR obscureText na senha para aparecer e esconder ela
 class SenhaInputButton extends StatelessWidget {
   final String hint;
   final double height;
