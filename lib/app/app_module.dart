@@ -5,6 +5,7 @@ import 'package:ilera/app/app_widget.dart';
 import 'package:ilera/app/modules/home/home_module.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
 import 'package:ilera/app/modules/login/login_module.dart';
+import 'package:ilera/app/repositories/aluno_repository.dart';
 import 'package:ilera/app/repositories/nutricionista_repository.dart';
 import 'package:ilera/app/repositories/token_repository.dart';
 import 'package:ilera/app/utils/constants.dart';
@@ -15,10 +16,12 @@ class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         $AppController,
-        Bind(
-            (inject) => LoginController(inject.get<NutricionistaRepository>())),
+        Bind((inject) => LoginController(inject.get<NutricionistaRepository>(),
+            inject.get<AlunoRepository>())),
         Bind((inject) => NutricionistaRepository(
             inject.get<Dio>(), inject.get<TokenRepository>())),
+        Bind((inject) =>
+            AlunoRepository(inject.get<Dio>(), inject.get<TokenRepository>())),
         Bind((inject) => TokenRepository(inject.get<Dio>())),
         Bind((inject) => Dio(BaseOptions(baseUrl: Constants.API_URL))),
       ];

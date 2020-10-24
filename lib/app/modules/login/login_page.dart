@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ilera/app/models/pessoa_model.dart';
+import 'package:ilera/app/modules/home/home_page.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
 
 class LoginPage extends StatefulWidget {
@@ -35,8 +37,9 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
             height: 50,
           ),
           TextButton(
-              onPressed: () {
-                controller.autenticarNutricionista();
+              onPressed: () async {
+                AlunoModel aluno = await controller.autenticarAluno();
+                Navigator.pushNamed(context, '/', arguments: aluno);
               },
               child: Text('Enviar')),
         ],
