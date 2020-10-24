@@ -93,7 +93,7 @@ class BotaoCadastro extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width * 0.7,
-      height: height * 0.06,
+      height: 45,
       child: RaisedButton(
         elevation: 10,
         shape: RoundedRectangleBorder(
@@ -130,7 +130,7 @@ class BotaoLogin extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       width: width * 0.7,
-      height: height * 0.06,
+      height: 45,
       child: RaisedButton(
         elevation: 10,
         shape: RoundedRectangleBorder(
@@ -168,7 +168,7 @@ class EmailInputButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * 0.05,
+      height: 45,
       width: width * 0.9,
       decoration: BoxDecoration(
         color: Constants.COLORS[0],
@@ -212,7 +212,7 @@ class SenhaInputButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: height * 0.05,
+      height: 45,
       width: width * 0.9,
       decoration: BoxDecoration(
         color: Constants.COLORS[0],
