@@ -88,8 +88,8 @@ class PageOne extends StatelessWidget {
               FadeAnimation(
                 0.70,
                 SizedBox(
-                  width: 168,
-                  height: 49,
+                  width: width * 0.4,
+                  height: height * 0.06,
                   child: RaisedButton(
                     elevation: 10,
                     onPressed: onPressed,
@@ -154,8 +154,8 @@ class PageTwo extends StatelessWidget {
               FadeAnimation(
                   0.7,
                   SizedBox(
-                    width: 168,
-                    height: 49,
+                    width: width * 0.4,
+                    height: height * 0.06,
                     child: RaisedButton(
                       elevation: 10,
                       onPressed: onPressed,
@@ -218,8 +218,8 @@ class PageThree extends StatelessWidget {
               FadeAnimation(
                   0.7,
                   SizedBox(
-                    width: 168,
-                    height: 49,
+                    width: width * 0.4,
+                    height: height * 0.06,
                     child: RaisedButton(
                       elevation: 10,
                       onPressed: () {
