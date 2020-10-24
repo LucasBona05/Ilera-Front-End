@@ -22,5 +22,8 @@ class Constants {
 
     ///Laranja Fraco - 5
     Color.fromRGBO(241, 119, 46, 1),
+
+    ///Marrom Forte - 70% Opacidade - 6
+    Color.fromRGBO(114, 59, 46, 0.7),
   ];
 }
