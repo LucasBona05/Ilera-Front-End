@@ -18,10 +18,10 @@ class AlunoModel {
   String genero;
   FichaDeTreinoModel fichaDeTreino;
   DietaModel dieta;
-  int peso;
-  int altura;
-  int cintura;
-  int pescoco;
+  double peso;
+  double altura;
+  double cintura;
+  double pescoco;
 
   AlunoModel(
       {this.nomeCompleto,

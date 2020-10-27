@@ -54,6 +54,14 @@ mixin _$LoginController on _LoginControllerBase, Store {
     });
   }
 
+  final _$autenticarAlunoAsyncAction =
+      AsyncAction('_LoginControllerBase.autenticarAluno');
+
+  @override
+  Future<AlunoModel> autenticarAluno() {
+    return _$autenticarAlunoAsyncAction.run(() => super.autenticarAluno());
+  }
+
   final _$_LoginControllerBaseActionController =
       ActionController(name: '_LoginControllerBase');
 
