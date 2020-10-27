@@ -52,6 +52,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                         hint: "Email",
                       ),
                       SizedBox(height: height * 0.05),
+
                       ///Senha Input
                       Container(
                         height: 45,
@@ -71,7 +72,7 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                             ),
                             suffixIcon: GestureDetector(
                               onTap: () {
-                                setState((){
+                                setState(() {
                                   _showPassword = !_showPassword;
                                 });
                               },
@@ -93,15 +94,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           },
                         ),
                       ),
-                      // SenhaInputButton(
-                      //   height: height,
-                      //   width: width,
-                      //   controller: controller,
-                      //   hint: "Senha",
-                      //   setState: () {
-                      //     _showPassword = !_showPassword;
-                      //   },
-                      // ),
                       SizedBox(height: height * 0.08),
                       BotaoLogin(
                         width: width,
@@ -187,12 +179,7 @@ class BotaoLogin extends StatelessWidget {
         textColor: Constants.COLORS[0],
         onPressed: () {
           controller.autenticarNutricionista();
-          //Navigator.pushReplacementNamed(context, '/home');
-          Navigator.of(context).pushReplacement(
-            MaterialPageRoute(
-              builder: (context) => HomePage(),
-            ),
-          );
+          Navigator.pushReplacementNamed(context, '/home');
         },
         child: Text(
           "login".toUpperCase(),
