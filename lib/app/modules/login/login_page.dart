@@ -72,12 +72,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           },
                         ),
                       ),
-                      // EmailInputButton(
-                      //   height: height,
-                      //   width: width,
-                      //   controller: controller,
-                      //   hint: "Email",
-                      // ),
                       SizedBox(height: height * 0.05),
 
                       ///Senha Input
@@ -211,7 +205,8 @@ class BotaoLogin extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           );
-          Navigator.popAndPushNamed(context, '/home',
+          Navigator.of(context).pushReplacementNamed('/home',
+              //Navigator.popAndPushNamed(context, '/home',
               arguments: await controller.autenticarAluno());
         },
         child: Text(
@@ -220,50 +215,6 @@ class BotaoLogin extends StatelessWidget {
             fontSize: 20,
           ),
         ),
-      ),
-    );
-  }
-}
-
-class EmailInputButton extends StatelessWidget {
-  final String hint;
-  final double height;
-  final double width;
-  final LoginController controller;
-  const EmailInputButton({
-    Key key,
-    @required this.height,
-    @required this.width,
-    @required this.controller,
-    this.hint,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 45,
-      width: width * 0.9,
-      decoration: BoxDecoration(
-        color: Constants.COLORS[0],
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: TextFormField(
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(left: 20),
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: Constants.COLORS[3],
-          ),
-        ),
-        controller: this.controller.email,
-        validator: (value) {
-          if (value.isEmpty) {
-            return "Preencha o campo!";
-          }
-          return null;
-        },
       ),
     );
   }
