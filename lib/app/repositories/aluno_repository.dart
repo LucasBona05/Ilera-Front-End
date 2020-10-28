@@ -16,15 +16,14 @@ class AlunoRepository {
     final Map<String, dynamic> headersRequest = {
       "Authorization": "Bearer ${jwt.jwt}",
     };
+
     var response;
+    AlunoModel aluno;
     try {
       response = await _dio.post('/usuarios/alunos/login',
           data: bodyRequest, options: Options(headers: headersRequest));
-    } catch (e) {
-      print('Uma exception foi encontrada...');
-    } finally {
       print(response.data);
-      AlunoModel aluno = new AlunoModel(
+      aluno = new AlunoModel(
         cpf: response.data['cpf'],
         email: response.data['email'],
         id: response.data['id'],
@@ -35,8 +34,9 @@ class AlunoRepository {
         peso: response.data['peso'],
         altura: response.data['altura'],
       );
-      // ignore: control_flow_in_finally
-      return aluno;
+    } on DioError catch (err) {
+      print('STATUS CODE ${err.response.statusCode}');
     }
+    return aluno;
   }
 }
