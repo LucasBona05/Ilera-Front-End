@@ -30,25 +30,34 @@ class _IntroPageState extends State<IntroPage> {
         child: PageView(
           controller: _controller,
           children: [
-            FadeAnimation(0.01, PageOne(
-              onPressed: () {
-                _controller.animateToPage(
-                  1,
-                  duration: Duration(milliseconds: 200),
-                  curve: Curves.bounceInOut,
-                );
-              },
-            )),
-            FadeAnimation(0.01, PageTwo(
-              onPressed: () {
-                _controller.animateToPage(
-                  2,
-                  duration: Duration(milliseconds: 200),
-                  curve: Curves.bounceInOut,
-                );
-              },
-            )),
-            FadeAnimation(0.01, PageThree()),
+            FadeAnimation(
+              0.01,
+              PageOne(
+                onPressed: () {
+                  _controller.animateToPage(
+                    1,
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.bounceInOut,
+                  );
+                },
+              ),
+            ),
+            FadeAnimation(
+              0.01,
+              PageTwo(
+                onPressed: () {
+                  _controller.animateToPage(
+                    2,
+                    duration: Duration(milliseconds: 200),
+                    curve: Curves.bounceInOut,
+                  );
+                },
+              ),
+            ),
+            FadeAnimation(
+              0.01,
+              PageThree(),
+            ),
           ],
         ),
       ),
@@ -72,6 +81,7 @@ class PageOne extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
+              SizedBox(height: height * 0.15),
               FadeAnimation(0.30, Image.asset('assets/images/png/tela_1.png')),
               SizedBox(height: height * 0.08),
               FadeAnimation(
@@ -138,6 +148,7 @@ class PageTwo extends StatelessWidget {
         child: Center(
           child: Column(
             children: [
+              SizedBox(height: height * 0.18),
               FadeAnimation(0.3, Image.asset('assets/images/png/tela_2.png')),
               SizedBox(height: height * 0.11),
               FadeAnimation(
@@ -204,6 +215,7 @@ class PageThree extends StatelessWidget {
             padding: const EdgeInsets.fromLTRB(0, 100, 0, 0),
             child: Column(
               children: [
+                SizedBox(height: height * 0.045),
                 FadeAnimation(0.3, Image.asset('assets/images/png/tela_3.png')),
                 SizedBox(height: height * 0.09),
                 FadeAnimation(

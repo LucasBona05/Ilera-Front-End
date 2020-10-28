@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ilera/app/modules/home/home_page.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
 import 'package:ilera/app/utils/constants.dart';
 
@@ -7,6 +8,8 @@ class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
 }
+
+bool _showPassword = false;
 
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
@@ -42,18 +45,82 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                             'assets/images/png/logo_nome_sem_sombra.png'),
                       ),
                       SizedBox(height: height * 0.1),
-                      EmailInputButton(
-                        height: height,
-                        width: width,
-                        controller: controller,
-                        hint: "Email",
+
+                      ///Email Input
+                      Container(
+                        height: 45,
+                        width: width * 0.9,
+                        decoration: BoxDecoration(
+                          color: Constants.COLORS[0],
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(left: 20),
+                            border: InputBorder.none,
+                            hintText: "email",
+                            hintStyle: TextStyle(
+                              color: Constants.COLORS[3],
+                            ),
+                          ),
+                          controller: this.controller.email,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return "Preencha o campo!";
+                            }
+                            return null;
+                          },
+                        ),
                       ),
+                      // EmailInputButton(
+                      //   height: height,
+                      //   width: width,
+                      //   controller: controller,
+                      //   hint: "Email",
+                      // ),
                       SizedBox(height: height * 0.05),
-                      SenhaInputButton(
-                        height: height,
-                        width: width,
-                        controller: controller,
-                        hint: "Senha",
+
+                      ///Senha Input
+                      Container(
+                        height: 45,
+                        width: width * 0.9,
+                        decoration: BoxDecoration(
+                          color: Constants.COLORS[0],
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        child: TextFormField(
+                          keyboardType: TextInputType.text,
+                          decoration: InputDecoration(
+                            contentPadding: EdgeInsets.only(left: 20, top: 12),
+                            border: InputBorder.none,
+                            hintText: "Senha",
+                            hintStyle: TextStyle(
+                              color: Constants.COLORS[3],
+                            ),
+                            suffixIcon: GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  _showPassword = !_showPassword;
+                                });
+                              },
+                              child: Icon(
+                                _showPassword == false
+                                    ? Icons.visibility_off
+                                    : Icons.visibility,
+                                color: Constants.COLORS[1],
+                              ),
+                            ),
+                          ),
+                          obscureText: _showPassword,
+                          controller: this.controller.senha,
+                          validator: (value) {
+                            if (value.isEmpty) {
+                              return "Preencha o campo!";
+                            }
+                            return null;
+                          },
+                        ),
                       ),
                       SizedBox(height: height * 0.08),
                       BotaoLogin(
@@ -139,7 +206,8 @@ class BotaoLogin extends StatelessWidget {
         color: Constants.COLORS[2],
         textColor: Constants.COLORS[0],
         onPressed: () {
-          controller.autenticarNutricionista();
+          controller.autenticarAluno();
+          Navigator.pushReplacementNamed(context, '/home');
         },
         child: Text(
           "login".toUpperCase(),
@@ -185,50 +253,6 @@ class EmailInputButton extends StatelessWidget {
           ),
         ),
         controller: this.controller.email,
-        validator: (value) {
-          if (value.isEmpty) {
-            return "Preencha o campo!";
-          }
-          return null;
-        },
-      ),
-    );
-  }
-}
-
-class SenhaInputButton extends StatelessWidget {
-  final String hint;
-  final double height;
-  final double width;
-  final LoginController controller;
-  const SenhaInputButton({
-    Key key,
-    @required this.height,
-    @required this.width,
-    @required this.controller,
-    this.hint,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 45,
-      width: width * 0.9,
-      decoration: BoxDecoration(
-        color: Constants.COLORS[0],
-        borderRadius: BorderRadius.circular(25),
-      ),
-      child: TextFormField(
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(left: 20),
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: Constants.COLORS[3],
-          ),
-        ),
-        controller: this.controller.senha,
         validator: (value) {
           if (value.isEmpty) {
             return "Preencha o campo!";
