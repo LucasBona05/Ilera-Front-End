@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ilera/app/models/pessoa_model.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
 import 'package:ilera/app/utils/constants.dart';
 
@@ -138,8 +139,15 @@ class BotaoLogin extends StatelessWidget {
         ),
         color: Constants.COLORS[2],
         textColor: Constants.COLORS[0],
-        onPressed: () {
-          controller.autenticarNutricionista();
+        onPressed: () async {
+          showDialog(
+            context: context,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+          Navigator.popAndPushNamed(context, '/home',
+              arguments: await controller.autenticarAluno());
         },
         child: Text(
           "login".toUpperCase(),
