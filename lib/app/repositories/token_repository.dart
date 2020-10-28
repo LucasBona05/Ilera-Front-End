@@ -13,6 +13,7 @@ class TokenRepository {
       '/authenticate',
       data: bodyRequest,
     );
+    print("TOKEN OBTIDO");
     return new JsonWebTokenModel(
       jwt: response.data['jwt'],
     );
