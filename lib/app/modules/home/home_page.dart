@@ -28,6 +28,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     this.dieta = await controller.getDieta(aluno.id);
   }
 
+  _getTreino() async {}
+
+  _getSessoes() async {}
+
   @override
   void initState() {
     _getDieta();
@@ -79,67 +83,47 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       Padding(
                         padding: const EdgeInsets.only(top: 15, bottom: 10),
                         child: dieta == null
-                            ? Container(
-                                width: width * 0.3,
-                                height: 100,
-                                decoration: BoxDecoration(
-                                  color: Constants.COLORS[3],
-                                  borderRadius: BorderRadius.circular(15),
-                                ),
-                                child: Text(
-                                  "Você ainda não tem dietas cadastradas!",
-                                  style: TextStyle(
-                                    color: Constants.COLORS[3],
-                                    fontSize: 20,
-                                  ),
-                                ),
+                            ? informacaoVazia(
+                                width,
+                                "Você ainda não tem dietas cadastradas!",
                               )
-                            : FutureBuilder(
-                                future: _getDieta(),
-                                builder: (context, snapshop) {
-                                  return ListView.builder(
-                                    itemCount: dieta.refeicoes.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Container(
-                                        width: width * 0.3,
-                                        height: 100,
-                                        decoration: BoxDecoration(
-                                          color: Constants.COLORS[0],
-                                          borderRadius:
-                                              BorderRadius.circular(15),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.all(20.0),
-                                          child: Row(
-                                            children: [
-                                              Container(
-                                                width: width * 0.5,
-                                                child: Text(
-                                                  dieta.refeicoes[0].descricao,
-                                                  style: TextStyle(
-                                                    color: Constants.COLORS[3],
-                                                    fontSize: 20,
-                                                  ),
-                                                ),
+                            : ListView.builder(
+                                itemCount: dieta.refeicoes.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Container(
+                                    width: width * 0.3,
+                                    height: 100,
+                                    decoration: BoxDecoration(
+                                      color: Constants.COLORS[0],
+                                      borderRadius: BorderRadius.circular(15),
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(20.0),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            width: width * 0.5,
+                                            child: Text(
+                                              dieta.refeicoes[0].descricao,
+                                              style: TextStyle(
+                                                color: Constants.COLORS[3],
+                                                fontSize: 20,
                                               ),
-                                              SizedBox(width: width * 0.08),
-                                              Text(
-                                                dieta.refeicoes[0].horario,
-                                                style: TextStyle(
-                                                  color: Constants.COLORS[1],
-                                                  fontSize: 30,
-                                                ),
-                                              ),
-                                            ],
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    },
+                                          SizedBox(width: width * 0.08),
+                                          Text(
+                                            dieta.refeicoes[0].horario,
+                                            style: TextStyle(
+                                              color: Constants.COLORS[1],
+                                              fontSize: 30,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
                                   );
-                                },
-                              ),
-                        //
+                                }),
                       ),
                       Text(
                         "Treino",
@@ -153,16 +137,30 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                   ),
                 ),
               ),
-        // Column(
-        //     mainAxisAlignment: MainAxisAlignment.center,
-        //     children: <Widget>[
-        //       Text('NOME: ${widget.alunoModel.nomeCompleto}'),
-        //       Text('EMAIL: ${widget.alunoModel.email}'),
-        //       Text('CPF: ${widget.alunoModel.cpf}'),
-        //       Text('GENERO: ${widget.alunoModel.genero}'),
-        //       Text('PLANO: ${widget.alunoModel.plano}'),
-        //     ],
-        //   ),
+      ),
+    );
+  }
+
+  ///Bloco para exibir caso não tiver a devida informação da sessão para exibir
+  Container informacaoVazia(double width, String text) {
+    return Container(
+      width: width * 0.3,
+      height: 100,
+      decoration: BoxDecoration(
+        color: Constants.COLORS[0],
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(left: 30),
+          child: Text(
+            "$text",
+            style: TextStyle(
+              color: Constants.COLORS[3],
+              fontSize: 22,
+            ),
+          ),
+        ),
       ),
     );
   }
