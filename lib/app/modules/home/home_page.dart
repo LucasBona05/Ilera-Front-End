@@ -71,6 +71,13 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                         ),
                       ),
                       //TODO Listar próximas sessões
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15, bottom: 10),
+                        child: informacaoVazia(
+                          width,
+                          "Você ainda não tem sessões agendadas!",
+                        ),
+                      ),
 
                       Text(
                         "Dieta",
@@ -87,41 +94,57 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                 width,
                                 "Você ainda não tem dietas cadastradas!",
                               )
-                            : ListView.builder(
-                                itemCount: dieta.refeicoes.length,
-                                itemBuilder: (BuildContext context, int index) {
-                                  return Container(
-                                    width: width * 0.3,
-                                    height: 100,
-                                    decoration: BoxDecoration(
-                                      color: Constants.COLORS[0],
-                                      borderRadius: BorderRadius.circular(15),
-                                    ),
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(20.0),
-                                      child: Row(
-                                        children: [
-                                          Container(
-                                            width: width * 0.5,
-                                            child: Text(
-                                              dieta.refeicoes[0].descricao,
-                                              style: TextStyle(
-                                                color: Constants.COLORS[3],
-                                                fontSize: 20,
-                                              ),
+                            : FutureBuilder(
+                                future: _getDieta(),
+                                builder: (context, snapshot) {
+                                  return ListView.builder(
+                                    shrinkWrap: true,
+                                    physics: NeverScrollableScrollPhysics(),
+                                    itemCount: dieta.refeicoes.length,
+                                    itemBuilder:
+                                        (BuildContext context, int index) {
+                                      return Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: Container(
+                                          width: width * 0.3,
+                                          height: 100,
+                                          decoration: BoxDecoration(
+                                            color: Constants.COLORS[0],
+                                            borderRadius:
+                                                BorderRadius.circular(15),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(20.0),
+                                            child: Row(
+                                              children: [
+                                                Container(
+                                                  width: width * 0.5,
+                                                  child: Text(
+                                                    dieta.refeicoes[index]
+                                                        .descricao,
+                                                    style: TextStyle(
+                                                      color:
+                                                          Constants.COLORS[3],
+                                                      fontSize: 20,
+                                                    ),
+                                                  ),
+                                                ),
+                                                SizedBox(width: width * 0.08),
+                                                Text(
+                                                  dieta
+                                                      .refeicoes[index].horario,
+                                                  style: TextStyle(
+                                                    color: Constants.COLORS[1],
+                                                    fontSize: 30,
+                                                  ),
+                                                ),
+                                              ],
                                             ),
                                           ),
-                                          SizedBox(width: width * 0.08),
-                                          Text(
-                                            dieta.refeicoes[0].horario,
-                                            style: TextStyle(
-                                              color: Constants.COLORS[1],
-                                              fontSize: 30,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
+                                        ),
+                                      );
+                                    },
                                   );
                                 }),
                       ),
@@ -133,6 +156,13 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                         ),
                       ),
                       //TODO Listar treinos
+                      Padding(
+                        padding: const EdgeInsets.only(top: 15, bottom: 10),
+                        child: informacaoVazia(
+                          width,
+                          "Você ainda não tem sessões agendadas!",
+                        ),
+                      ),
                     ],
                   ),
                 ),
