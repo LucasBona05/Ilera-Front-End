@@ -2,10 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ilera/app/app_widget.dart';
+import 'package:ilera/app/modules/home/home_controller.dart';
 import 'package:ilera/app/modules/home/home_module.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
 import 'package:ilera/app/modules/login/login_module.dart';
 import 'package:ilera/app/repositories/aluno_repository.dart';
+import 'package:ilera/app/repositories/dieta_repository.dart';
 import 'package:ilera/app/repositories/nutricionista_repository.dart';
 import 'package:ilera/app/repositories/token_repository.dart';
 import 'package:ilera/app/utils/constants.dart';
@@ -26,6 +28,9 @@ class AppModule extends MainModule {
             AlunoRepository(inject.get<Dio>(), inject.get<TokenRepository>())),
         Bind((inject) => TokenRepository(inject.get<Dio>())),
         Bind((inject) => Dio(BaseOptions(baseUrl: Constants.API_URL))),
+        Bind((inject) =>
+            DietaRepository(inject.get<Dio>(), inject.get<TokenRepository>())),
+        Bind((inject) => HomeController(inject.get<DietaRepository>())),
       ];
 
   @override

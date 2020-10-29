@@ -1,6 +1,8 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
+import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
 
 class LoginPage extends StatefulWidget {
@@ -205,14 +207,57 @@ class BotaoLogin extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           );
-          Navigator.of(context).pushReplacementNamed('/home',
-              //Navigator.popAndPushNamed(context, '/home',
-              arguments: await controller.autenticarAluno());
+          try {
+            Navigator.of(context).pushReplacementNamed('/home',
+                arguments: await controller.autenticarAluno());
+          } catch (e) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => Error(),
+              ),
+            );
+          }
         },
         child: Text(
           "login".toUpperCase(),
           style: TextStyle(
             fontSize: 20,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Error extends StatefulWidget {
+  @override
+  _ErrorState createState() => _ErrorState();
+}
+
+class _ErrorState extends State<Error> {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Constants.COLORS[5],
+        title: Text(
+          'erro'.toUpperCase(),
+          style: TextStyle(
+              color: Constants.COLORS[0], fontFamily: 'Flood', fontSize: 35),
+        ),
+        automaticallyImplyLeading: true,
+      ),
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Constants.COLORS[1],
+        child: Center(
+          child: Text(
+            "Erro ao realizar o login. Tente novamente",
+            style: TextStyle(
+              color: Constants.COLORS[0],
+              fontSize: 30,
+            ),
           ),
         ),
       ),
