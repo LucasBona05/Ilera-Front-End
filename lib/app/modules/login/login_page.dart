@@ -1,8 +1,6 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
-import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
 
 class LoginPage extends StatefulWidget {

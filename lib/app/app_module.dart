@@ -15,6 +15,7 @@ import 'package:ilera/app/utils/constants.dart';
 import 'app_controller.dart';
 import 'modules/intro/intro_module.dart';
 import 'modules/splash/splash_module.dart';
+import 'repositories/treino_repository.dart';
 
 class AppModule extends MainModule {
   @override
@@ -30,7 +31,10 @@ class AppModule extends MainModule {
         Bind((inject) => Dio(BaseOptions(baseUrl: Constants.API_URL))),
         Bind((inject) =>
             DietaRepository(inject.get<Dio>(), inject.get<TokenRepository>())),
-        Bind((inject) => HomeController(inject.get<DietaRepository>())),
+        Bind((inject) =>
+            TreinoRepository(inject.get<Dio>(), inject.get<TokenRepository>())),
+        Bind((inject) => HomeController(
+            inject.get<TreinoRepository>(), inject.get<DietaRepository>())),
       ];
 
   @override

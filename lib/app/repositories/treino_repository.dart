@@ -1,30 +1,32 @@
 import 'package:dio/dio.dart';
-import 'package:ilera/app/models/dieta_model.dart';
+import 'package:ilera/app/models/ficha_de_treino_model.dart';
 import 'package:ilera/app/models/json_web_token_model.dart';
 
 import 'token_repository.dart';
 
-class DietaRepository {
+class TreinoRepository {
   final Dio _dio;
   final TokenRepository _token;
 
-  DietaRepository([this._dio, this._token]);
+  TreinoRepository(this._dio, this._token);
 
-  Future<DietaModel> getDietaByIdAluno(int id) async {
+  Future<FichaDeTreinoModel> getTreinoByIdAluno(int id) async {
     JsonWebTokenModel jwt = await _token.getToken();
     final Map<String, dynamic> headersRequest = {
       "Authorization": "Bearer ${jwt.jwt}",
     };
     final response = await _dio.get(
-      '/dietas/obterDietaPeloAluno/$id',
+      '/obterTreinoPeloAluno/$id',
       options: Options(headers: headersRequest),
     );
     print("RESPONSE.DATA:");
     print(response.data);
-    DietaModel result;
+
+    FichaDeTreinoModel result;
     if (response.statusCode == 200) {
-      DietaModel dietaModel = DietaModel.fromJson(response.data);
-      result = dietaModel;
+      FichaDeTreinoModel treinoModel =
+          FichaDeTreinoModel.fromJson(response.data);
+      result = treinoModel;
     }
     return result;
   }

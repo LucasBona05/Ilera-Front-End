@@ -22,7 +22,6 @@ class DietaModel {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['id'] = this.id;
-    //data['aluno'] = this.aluno;
     if (this.refeicoes != null) {
       data['refeicoes'] = this.refeicoes.map((v) => v.toJson()).toList();
     }

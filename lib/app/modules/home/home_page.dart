@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:ilera/app/app_module.dart';
 import 'package:ilera/app/models/dieta_model.dart';
+import 'package:ilera/app/models/ficha_de_treino_model.dart';
 import 'package:ilera/app/models/pessoa_model.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
@@ -22,19 +22,14 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends ModularState<HomePage, HomeController> {
   AlunoModel aluno;
   DietaModel dieta;
+  FichaDeTreinoModel treino;
   _HomePageState({this.aluno});
 
-  _getDieta() async {
-    this.dieta = await controller.getDieta(aluno.id);
-  }
-
-  _getTreino() async {}
-
-  _getSessoes() async {}
+  //_getSessoes() async {}
 
   @override
   void initState() {
-    _getDieta();
+    print(aluno.dieta.refeicoes[0].descricao);
     super.initState();
   }
 
@@ -45,7 +40,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     double height = MediaQuery.of(context).size.height;
     return Scaffold(
       ///AppBar
-      appBar: Conponents.ileraAppBar("ilera"),
+      appBar: Conponents.ileraAppBar("ilera", context),
       bottomNavigationBar: Conponents.ileraBottomAppBar(
         Constants.COLORS[2],
         Constants.COLORS[0],
@@ -86,67 +81,60 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                           fontSize: 25,
                         ),
                       ),
-                      //TODO Listar dieta
+
+                      ///Exibição da dieta
                       Padding(
                         padding: const EdgeInsets.only(top: 15, bottom: 10),
-                        child: dieta == null
+                        child: aluno.dieta == null
                             ? informacaoVazia(
                                 width,
                                 "Você ainda não tem dietas cadastradas!",
                               )
-                            : FutureBuilder(
-                                future: _getDieta(),
-                                builder: (context, snapshot) {
-                                  return ListView.builder(
-                                    shrinkWrap: true,
-                                    physics: NeverScrollableScrollPhysics(),
-                                    itemCount: dieta.refeicoes.length,
-                                    itemBuilder:
-                                        (BuildContext context, int index) {
-                                      return Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 10),
-                                        child: Container(
-                                          width: width * 0.3,
-                                          height: 100,
-                                          decoration: BoxDecoration(
-                                            color: Constants.COLORS[0],
-                                            borderRadius:
-                                                BorderRadius.circular(15),
-                                          ),
-                                          child: Padding(
-                                            padding: const EdgeInsets.all(20.0),
-                                            child: Row(
-                                              children: [
-                                                Container(
-                                                  width: width * 0.5,
-                                                  child: Text(
-                                                    dieta.refeicoes[index]
-                                                        .descricao,
-                                                    style: TextStyle(
-                                                      color:
-                                                          Constants.COLORS[3],
-                                                      fontSize: 20,
-                                                    ),
-                                                  ),
+                            : ListView.builder(
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemCount: aluno.dieta.refeicoes.length,
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Container(
+                                      width: width * 0.3,
+                                      height: 100,
+                                      decoration: BoxDecoration(
+                                        color: Constants.COLORS[0],
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(20.0),
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              width: width * 0.5,
+                                              child: Text(
+                                                aluno.dieta.refeicoes[index]
+                                                    .descricao,
+                                                style: TextStyle(
+                                                  color: Constants.COLORS[3],
+                                                  fontSize: 20,
                                                 ),
-                                                SizedBox(width: width * 0.08),
-                                                Text(
-                                                  dieta
-                                                      .refeicoes[index].horario,
-                                                  style: TextStyle(
-                                                    color: Constants.COLORS[1],
-                                                    fontSize: 30,
-                                                  ),
-                                                ),
-                                              ],
+                                              ),
                                             ),
-                                          ),
+                                            SizedBox(width: width * 0.08),
+                                            Text(
+                                              aluno.dieta.refeicoes[index]
+                                                  .horario,
+                                              style: TextStyle(
+                                                color: Constants.COLORS[1],
+                                                fontSize: 30,
+                                              ),
+                                            ),
+                                          ],
                                         ),
-                                      );
-                                    },
+                                      ),
+                                    ),
                                   );
-                                }),
+                                },
+                              ),
                       ),
                       Text(
                         "Treino",
@@ -158,10 +146,110 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                       //TODO Listar treinos
                       Padding(
                         padding: const EdgeInsets.only(top: 15, bottom: 10),
-                        child: informacaoVazia(
-                          width,
-                          "Você ainda não tem sessões agendadas!",
-                        ),
+                        child: aluno.fichaDeTreino == null
+                            ? informacaoVazia(
+                                width,
+                                "Você ainda não tem sessões agendadas!",
+                              )
+                            : ListView.builder(
+                                itemCount:
+                                    aluno.fichaDeTreino.exercicios.length,
+                                shrinkWrap: true,
+                                physics: NeverScrollableScrollPhysics(),
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Padding(
+                                    padding: const EdgeInsets.only(bottom: 10),
+                                    child: Container(
+                                      width: width * 0.3,
+                                      height: 200,
+                                      decoration: BoxDecoration(
+                                        color: Constants.COLORS[0],
+                                        borderRadius: BorderRadius.circular(15),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(12.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              aluno
+                                                  .fichaDeTreino
+                                                  .exercicios[index]
+                                                  .nomeDoExercicio,
+                                              style: TextStyle(
+                                                color: Constants.COLORS[2],
+                                                fontSize: 25,
+                                              ),
+                                            ),
+                                            SizedBox(height: 10),
+                                            Text(
+                                              aluno
+                                                  .fichaDeTreino
+                                                  .exercicios[index]
+                                                  .descricaoDoExercicio,
+                                              style: TextStyle(
+                                                color: Constants.COLORS[3],
+                                                fontSize: 20,
+                                              ),
+                                            ),
+                                            SizedBox(height: 10),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Repetições:",
+                                                  style: TextStyle(
+                                                    color: Constants.COLORS[1],
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  aluno
+                                                      .fichaDeTreino
+                                                      .exercicios[index]
+                                                      .serieDoExercicio
+                                                      .identificadorDaSerie,
+                                                  style: TextStyle(
+                                                    color: Constants.COLORS[3],
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Tempo de descanço:",
+                                                  style: TextStyle(
+                                                    color: Constants.COLORS[1],
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 10),
+                                                Text(
+                                                  aluno
+                                                          .fichaDeTreino
+                                                          .exercicios[index]
+                                                          .serieDoExercicio
+                                                          .tempoDeDescansoEntreCadaSerie
+                                                          .toString() +
+                                                      " segundos",
+                                                  style: TextStyle(
+                                                    color: Constants.COLORS[3],
+                                                    fontSize: 20,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      //Text(aluno.fichaDeTreino.exercicios[index].descricaoDoExercicio),
+                                    ),
+                                  );
+                                },
+                              ),
                       ),
                     ],
                   ),

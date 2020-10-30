@@ -7,7 +7,7 @@ part of 'home_controller.dart';
 // **************************************************************************
 
 final $HomeController = BindInject(
-  (i) => HomeController(i<DietaRepository>()),
+  (i) => HomeController(i<TreinoRepository>(), i<DietaRepository>()),
   singleton: true,
   lazy: true,
 );
@@ -24,6 +24,13 @@ mixin _$HomeController on _HomeControllerBase, Store {
   @override
   Future<DietaModel> getDieta(int id) {
     return _$getDietaAsyncAction.run(() => super.getDieta(id));
+  }
+
+  final _$getTreinoAsyncAction = AsyncAction('_HomeControllerBase.getTreino');
+
+  @override
+  Future<FichaDeTreinoModel> getTreino(int id) {
+    return _$getTreinoAsyncAction.run(() => super.getTreino(id));
   }
 
   @override

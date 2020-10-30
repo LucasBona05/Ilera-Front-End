@@ -4,11 +4,13 @@ import 'constants.dart';
 
 class Conponents {
   ///AppBar
-  static AppBar ileraAppBar(String text) {
+  static AppBar ileraAppBar(String text, BuildContext context){
     return AppBar(
       leading: GestureDetector(
         //TODO COLOCAR MENU
-        onTap: () {},
+        onTap: () {
+          Navigator.pop(context);
+        },
         child: Icon(
           Icons.menu,
           color: Constants.COLORS[0],
