@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ilera/app/app_widget.dart';
+import 'package:ilera/app/modules/cadastro/cadastro_controller.dart';
+import 'package:ilera/app/modules/cadastro/cadastro_module.dart';
 import 'package:ilera/app/modules/home/home_module.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
 import 'package:ilera/app/modules/login/login_module.dart';
@@ -20,6 +22,7 @@ class AppModule extends MainModule {
         $AppController,
         Bind((inject) => LoginController(inject.get<NutricionistaRepository>(),
             inject.get<AlunoRepository>())),
+        Bind((inject) => CadastroController(inject.get<AlunoRepository>())),
         Bind((inject) => NutricionistaRepository(
             inject.get<Dio>(), inject.get<TokenRepository>())),
         Bind((inject) =>
@@ -34,6 +37,7 @@ class AppModule extends MainModule {
         ModularRouter('/intro', module: IntroModule()),
         ModularRouter('/login', module: LoginModule()),
         ModularRouter('/home', module: HomeModule()),
+        ModularRouter('/cadastro', module: CadastroModule())
       ];
 
   @override

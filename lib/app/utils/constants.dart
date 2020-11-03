@@ -26,4 +26,6 @@ class Constants {
     ///Marrom Forte - 70% Opacidade - 6
     Color.fromRGBO(114, 59, 46, 0.7),
   ];
+
+  static double REGISTER_FONT_SIZE = 15;
 }

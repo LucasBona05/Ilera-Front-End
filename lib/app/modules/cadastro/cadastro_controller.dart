@@ -1,3 +1,4 @@
+import 'package:ilera/app/models/imagem_model.dart';
 import 'package:mobx/mobx.dart';
 import 'package:flutter/material.dart';
 import 'package:ilera/app/repositories/aluno_repository.dart';
@@ -39,12 +40,19 @@ abstract class _CadastroControllerBase with Store {
   @observable
   TextEditingController plano = TextEditingController();
 
+  _CadastroControllerBase([this.alunoRepository]);
+
   @action
   Future<AlunoModel> registrarAluno() async {
     var pesoDouble = double.parse(peso.text);
     var alturaDouble = double.parse(altura.text);
     var cinturaDouble = double.parse(cintura.text);
     var pescocoDouble = double.parse(pescoco.text);
+
+    ImagemModel fotoDePerfil = ImagemModel();
+    ImagemModel fotoDeFrente = ImagemModel();
+    ImagemModel fotoDeCostas = ImagemModel();
+
     return await this.alunoRepository.cadastro(
         nomeCompleto.text,
         senha.text,
