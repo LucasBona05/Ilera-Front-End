@@ -9,7 +9,9 @@ class CadastroPage extends StatefulWidget {
   _CadastroPageState createState() => _CadastroPageState();
 }
 
-bool _showPassword = false;
+bool _showPassword = true;
+
+String _senhaValidator;
 
 class _CadastroPageState
     extends ModularState<CadastroPage, CadastroController> {
@@ -89,46 +91,13 @@ class _CadastroPageState
                   SizedBox(height: height * 0.03),
 
                   //DatePicker
-                  Container(
-                      height: 51,
-                      width: width * 0.9,
-                      decoration: BoxDecoration(
-                        color: Constants.COLORS[0],
-                        borderRadius: BorderRadius.circular(30),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 20),
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: TextButton(
-                            child: Text(
-                              _dateTime == null
-                                  ? 'Data de Nascimento'.toUpperCase()
-                                  : dateFormat.format(_dateTime),
-                              style: TextStyle(
-                                  fontFamily: 'Futura',
-                                  color: Constants.COLORS[2],
-                                  fontSize: 16),
-                            ),
-                            onPressed: () {
-                              showDatePicker(
-                                      context: context,
-                                      initialDate: DateTime.now(),
-                                      firstDate: DateTime(1940),
-                                      lastDate: DateTime(2021))
-                                  .then((date) {
-                                setState(() {
-                                  _dateTime = date;
-                                });
-                              });
-                            },
-                          ),
-                        ),
-                      )),
+                  DatePickerInput(
+                      height: height, width: width, controller: controller),
                   SizedBox(height: height * 0.03),
                   GeneroInputDrop(
                     height: height,
                     width: width,
+                    controller: controller,
                   ),
                   SizedBox(height: height * 0.04),
                 ],
@@ -374,7 +343,10 @@ class _SenhaInputButtonState extends State<SenhaInputButton> {
           validator: (value) {
             if (value.isEmpty) {
               return "Preencha o campo!";
+            } else {
+              _senhaValidator = this.widget.controller.senha.text;
             }
+            print(_senhaValidator);
             return null;
           },
         ),
@@ -418,7 +390,7 @@ class _SenhaConfirmInputButtonState extends State<SenhaConfirmInputButton> {
           decoration: InputDecoration(
             contentPadding: EdgeInsets.only(left: 20, top: 14),
             border: InputBorder.none,
-            hintText: "Senha".toUpperCase(),
+            hintText: "Confirme sua senha".toUpperCase(),
             hintStyle: TextStyle(
               color: Constants.COLORS[2],
             ),
@@ -437,16 +409,79 @@ class _SenhaConfirmInputButtonState extends State<SenhaConfirmInputButton> {
             ),
           ),
           obscureText: _showPassword,
-          controller: this.widget.controller.senha,
+          controller: this.widget.controller.confirmSenha,
           validator: (value) {
             if (value.isEmpty) {
               return "Preencha o campo!";
+            }
+            if (value != _senhaValidator) {
+              return "As senhas devem estar iguais!";
             }
             return null;
           },
         ),
       ),
     );
+  }
+}
+
+class DatePickerInput extends StatefulWidget {
+  final double height;
+  final double width;
+  final CadastroController controller;
+
+  const DatePickerInput({
+    Key key,
+    @required this.height,
+    @required this.width,
+    @required this.controller,
+  }) : super(key: key);
+
+  @override
+  _DatePickerInputState createState() => _DatePickerInputState();
+}
+
+class _DatePickerInputState extends State<DatePickerInput> {
+  DateTime _dateTime;
+  DateFormat dateFormat = new DateFormat("dd-MM-yyyy");
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        height: 51,
+        width: widget.width * 0.9,
+        decoration: BoxDecoration(
+          color: Constants.COLORS[0],
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 20),
+          child: Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton(
+              child: Text(
+                _dateTime == null
+                    ? 'Data de Nascimento'.toUpperCase()
+                    : dateFormat.format(_dateTime),
+                style: TextStyle(
+                    fontFamily: 'Futura',
+                    color: Constants.COLORS[2],
+                    fontSize: 16),
+              ),
+              onPressed: () {
+                showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1940),
+                        lastDate: DateTime(2021))
+                    .then((date) {
+                  setState(() {
+                    _dateTime = date;
+                  });
+                });
+              },
+            ),
+          ),
+        ));
   }
 }
 
@@ -492,7 +527,7 @@ class _GeneroInputDropState extends State<GeneroInputDrop> {
           child: Padding(
             padding: const EdgeInsets.only(left: 23, right: 11),
             child: DropdownButtonHideUnderline(
-              child: DropdownButtonFormField<String>(
+              child: DropdownButton<String>(
                 value: dropdownValue,
                 icon: Icon(Icons.arrow_downward),
                 iconSize: 24,
@@ -504,7 +539,10 @@ class _GeneroInputDropState extends State<GeneroInputDrop> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue = newValue;
+                    print(dropdownValue);
+                    this.widget.controller.genero.text = dropdownValue;
                   });
+                  print(this.widget.controller.genero.text);
                 },
                 items: <String>[
                   'Homem Cis'.toUpperCase(),

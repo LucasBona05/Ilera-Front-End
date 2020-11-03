@@ -16,6 +16,8 @@ abstract class _CadastroControllerBase with Store {
   @observable
   TextEditingController senha = TextEditingController();
   @observable
+  TextEditingController confirmSenha = TextEditingController();
+  @observable
   TextEditingController email = TextEditingController();
   @observable
   TextEditingController genero = TextEditingController();
