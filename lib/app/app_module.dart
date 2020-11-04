@@ -14,6 +14,8 @@ import 'package:ilera/app/utils/constants.dart';
 
 import 'app_controller.dart';
 import 'modules/intro/intro_module.dart';
+import 'modules/search/search_controller.dart';
+import 'modules/search/search_module.dart';
 import 'modules/splash/splash_module.dart';
 import 'repositories/treino_repository.dart';
 
@@ -35,6 +37,8 @@ class AppModule extends MainModule {
             TreinoRepository(inject.get<Dio>(), inject.get<TokenRepository>())),
         Bind((inject) => HomeController(
             inject.get<TreinoRepository>(), inject.get<DietaRepository>())),
+        Bind((inject) =>
+            SearchController(inject.get<NutricionistaRepository>())),
       ];
 
   @override
@@ -43,6 +47,7 @@ class AppModule extends MainModule {
         ModularRouter('/intro', module: IntroModule()),
         ModularRouter('/login', module: LoginModule()),
         ModularRouter('/home', module: HomeModule()),
+        ModularRouter('/search', module: SearchModule()),
       ];
 
   @override

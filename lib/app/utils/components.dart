@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:simple_code/simple_code.dart';
 
 import 'constants.dart';
 
 class Conponents {
   ///AppBar
-  static AppBar ileraAppBar(String text, BuildContext context){
+  static AppBar ileraAppBar(String text, BuildContext context) {
     return AppBar(
       leading: GestureDetector(
         //TODO COLOCAR MENU
@@ -20,7 +21,7 @@ class Conponents {
       title: Text(
         '$text'.toUpperCase(),
         style: TextStyle(
-            color: Constants.COLORS[0], fontFamily: 'Flood', fontSize: 35),
+            color: Constants.COLORS[0], fontFamily: 'Flood', fontSize: sz(35)),
       ),
       automaticallyImplyLeading: false,
     );
@@ -38,7 +39,7 @@ class Conponents {
         child: Row(
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 33),
+              padding: const EdgeInsets.symmetric(horizontal: 27),
               child: GestureDetector(
                 onTap: () {
                   print("CLICADO");
@@ -49,7 +50,7 @@ class Conponents {
                 child: Icon(
                   Icons.home,
                   color: one,
-                  size: 60,
+                  size: sz(60),
                 ),
               ),
             ),
@@ -58,14 +59,14 @@ class Conponents {
               child: GestureDetector(
                 onTap: () {
                   print("CLICADO");
-                  // if (two != selected) {
-                  //   Navigator.pushNamed(context, "/busca");
-                  // }
+                  if (two != selected) {
+                    Navigator.pushNamed(context, "/search");
+                  }
                 },
                 child: Icon(
                   Icons.search,
                   color: two,
-                  size: 60,
+                  size: sz(60),
                 ),
               ),
             ),
@@ -81,7 +82,7 @@ class Conponents {
                 child: Icon(
                   Icons.person,
                   color: three,
-                  size: 60,
+                  size: sz(60),
                 ),
               ),
             ),

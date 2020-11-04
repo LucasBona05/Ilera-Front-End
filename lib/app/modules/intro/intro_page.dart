@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:ilera/app/utils/constants.dart';
 import 'package:ilera/app/utils/fade_animation.dart';
+import 'package:simple_code/simple_code.dart';
 
 class IntroPage extends StatefulWidget {
   @override

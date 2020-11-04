@@ -36,6 +36,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0-nullsafety.1"
+  bordered_text:
+    dependency: transitive
+    description:
+      name: bordered_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   build:
     dependency: transitive
     description:
@@ -466,6 +473,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.2.3"
+  simple_code:
+    dependency: "direct main"
+    description:
+      name: simple_code
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.0.6"
   sky_engine:
     dependency: transitive
     description: flutter

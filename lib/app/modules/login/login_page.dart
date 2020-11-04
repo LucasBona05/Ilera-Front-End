@@ -8,7 +8,7 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-bool _showPassword = false;
+bool _showPassword = true;
 
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override

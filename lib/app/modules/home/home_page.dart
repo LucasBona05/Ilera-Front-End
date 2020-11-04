@@ -25,8 +25,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   FichaDeTreinoModel treino;
   _HomePageState({this.aluno});
 
-  //_getSessoes() async {}
-
   @override
   void initState() {
     print(aluno.dieta.refeicoes[0].descricao);
