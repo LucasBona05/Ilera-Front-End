@@ -35,7 +35,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
-    double height = MediaQuery.of(context).size.height;
     return Scaffold(
       ///AppBar
       appBar: Conponents.ileraAppBar("ilera", context),

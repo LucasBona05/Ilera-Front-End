@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:ilera/app/models/nutricionista_model.dart';
+import 'package:ilera/app/modules/search/search_controller.dart';
+import 'package:ilera/app/repositories/nutricionista_repository.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
 import 'package:simple_code/simple_code.dart';
@@ -10,7 +14,24 @@ class SearchPage extends StatefulWidget {
 
 String _buscaInstrutor = "INSTRUTORES_FISICOS";
 
-class _SearchPageState extends State<SearchPage> {
+class _SearchPageState extends ModularState<SearchPage, SearchController> {
+  List<NutricionistaModel> nutricionistas;
+  NutricionistaRepository _nutricionistaRepository;
+
+  @override
+  void initState() {
+    _getNutricionistas();
+    super.initState();
+  }
+
+  _getNutricionistas() {
+    setState(() {
+      nutricionistas = _nutricionistaRepository.getTodosNutricionistas()
+          as List<NutricionistaModel>;
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
