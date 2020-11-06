@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ilera/app/modules/cadastro/cadastro_controller.dart';
 import 'package:ilera/app/utils/constants.dart';
@@ -15,15 +16,12 @@ String _senhaValidator;
 
 class _CadastroPageState
     extends ModularState<CadastroPage, CadastroController> {
-  DateTime _dateTime;
-  DateFormat dateFormat = new DateFormat("dd-MM-yyyy");
-
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Scaffold(
-      body: Container(
+    return Scaffold(body: Observer(builder: (_) {
+      return Container(
         height: height,
         width: width,
         color: Constants.COLORS[5],
@@ -88,17 +86,21 @@ class _CadastroPageState
                   //Confirmar Senha
                   SenhaConfirmInputButton(
                       height: height, width: width, controller: controller),
+
                   SizedBox(height: height * 0.03),
 
                   //DatePicker
                   DatePickerInput(
                       height: height, width: width, controller: controller),
+
                   SizedBox(height: height * 0.03),
+
                   GeneroInputDrop(
                     height: height,
                     width: width,
                     controller: controller,
                   ),
+
                   SizedBox(height: height * 0.04),
                 ],
               ),
@@ -116,10 +118,12 @@ class _CadastroPageState
                     ),
                   ),
                   SizedBox(height: height * 0.03),
-                  AlturaInputSlider(),
-                  PesoInputSlider(),
-                  CinturaInputSlider(),
-                  PescocoInputSlider(),
+                  AlturaInputSlider(controller: controller),
+                  PesoInputSlider(controller: controller),
+                  CinturaInputSlider(
+                    controller: controller,
+                  ),
+                  PescocoInputSlider(controller: controller),
                   SizedBox(height: height * 0.05),
                   MetaInputDrop(height: height, width: width),
                 ],
@@ -139,7 +143,8 @@ class _CadastroPageState
                     ),
                   ),
                   SizedBox(height: height * 0.05),
-                  PlanosInputDrop(height: height, width: width),
+                  PlanosInputDrop(
+                      height: height, width: width, controller: controller),
                   SizedBox(height: height * 0.07),
                   Align(
                     alignment: Alignment.topLeft,
@@ -176,7 +181,8 @@ class _CadastroPageState
               SizedBox(height: height * 0.08),
               Column(
                 children: [
-                  BotaoCadastro(width: width, height: height),
+                  BotaoCadastro(
+                      width: width, height: height, controller: controller),
                   SizedBox(height: height * 0.03),
                   BotaoLogin(
                     height: height,
@@ -187,8 +193,8 @@ class _CadastroPageState
             ],
           ),
         ),
-      ),
-    );
+      );
+    }));
   }
 }
 
@@ -539,10 +545,8 @@ class _GeneroInputDropState extends State<GeneroInputDrop> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue = newValue;
-                    print(dropdownValue);
                     this.widget.controller.genero.text = dropdownValue;
                   });
-                  print(this.widget.controller.genero.text);
                 },
                 items: <String>[
                   'Homem Cis'.toUpperCase(),
@@ -569,6 +573,9 @@ class _GeneroInputDropState extends State<GeneroInputDrop> {
 }
 
 class AlturaInputSlider extends StatefulWidget {
+  final CadastroController controller;
+
+  const AlturaInputSlider({Key key, this.controller}) : super(key: key);
   @override
   _AlturaInputSliderState createState() => _AlturaInputSliderState();
 }
@@ -615,7 +622,10 @@ class _AlturaInputSliderState extends State<AlturaInputSlider> {
             onChanged: (double newValue) {
               setState(() {
                 currentSliderValue = newValue.round();
+                this.widget.controller.altura.text =
+                    currentSliderValue.toString();
               });
+              print(this.widget.controller.altura.text);
             })
       ],
     );
@@ -623,12 +633,15 @@ class _AlturaInputSliderState extends State<AlturaInputSlider> {
 }
 
 class PesoInputSlider extends StatefulWidget {
+  final CadastroController controller;
+
+  const PesoInputSlider({Key key, this.controller}) : super(key: key);
   @override
   _PesoInputSliderState createState() => _PesoInputSliderState();
 }
 
 class _PesoInputSliderState extends State<PesoInputSlider> {
-  double _currentSliderValue = 150;
+  double currentSliderValue = 150;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -650,7 +663,7 @@ class _PesoInputSliderState extends State<PesoInputSlider> {
               Padding(
                 padding: const EdgeInsets.only(left: 2),
                 child: Text(
-                  _currentSliderValue.toStringAsFixed(1) + 'kg',
+                  currentSliderValue.toStringAsFixed(1) + 'kg',
                   style: TextStyle(
                       fontFamily: 'Futura',
                       color: Constants.COLORS[0],
@@ -663,13 +676,19 @@ class _PesoInputSliderState extends State<PesoInputSlider> {
         Slider(
             activeColor: Constants.COLORS[2],
             inactiveColor: Constants.COLORS[6],
-            value: _currentSliderValue,
+            value: currentSliderValue,
             min: 30,
             max: 240,
             onChanged: (double newValue) {
               setState(() {
-                _currentSliderValue = newValue;
+                currentSliderValue = newValue;
+                String resultado = currentSliderValue.toStringAsFixed(
+                    currentSliderValue.truncateToDouble() == currentSliderValue
+                        ? 0
+                        : 2);
+                this.widget.controller.peso.text = resultado;
               });
+              print(this.widget.controller.peso.text);
             })
       ],
     );
@@ -677,6 +696,9 @@ class _PesoInputSliderState extends State<PesoInputSlider> {
 }
 
 class CinturaInputSlider extends StatefulWidget {
+  final CadastroController controller;
+
+  const CinturaInputSlider({Key key, this.controller}) : super(key: key);
   @override
   _CinturaInputSliderState createState() => _CinturaInputSliderState();
 }
@@ -723,7 +745,10 @@ class _CinturaInputSliderState extends State<CinturaInputSlider> {
             onChanged: (double newValue) {
               setState(() {
                 currentSliderValue = newValue.round();
+                this.widget.controller.cintura.text =
+                    currentSliderValue.toString();
               });
+              print(this.widget.controller.cintura.text);
             })
       ],
     );
@@ -731,6 +756,9 @@ class _CinturaInputSliderState extends State<CinturaInputSlider> {
 }
 
 class PescocoInputSlider extends StatefulWidget {
+  final CadastroController controller;
+
+  const PescocoInputSlider({Key key, this.controller}) : super(key: key);
   @override
   _PescocoInputSliderState createState() => _PescocoInputSliderState();
 }
@@ -777,7 +805,10 @@ class _PescocoInputSliderState extends State<PescocoInputSlider> {
             onChanged: (double newValue) {
               setState(() {
                 currentSliderValue = newValue.round();
+                this.widget.controller.pescoco.text =
+                    currentSliderValue.toString();
               });
+              print(this.widget.controller.pescoco.text);
             })
       ],
     );
@@ -860,7 +891,12 @@ class _MetaInputDropState extends State<MetaInputDrop> {
 class PlanosInputDrop extends StatefulWidget {
   final double height;
   final double width;
-  PlanosInputDrop({Key key, @required this.height, @required this.width})
+  final CadastroController controller;
+  PlanosInputDrop(
+      {Key key,
+      @required this.height,
+      @required this.width,
+      @required this.controller})
       : super(key: key);
   @override
   _PlanosInputDropState createState() => _PlanosInputDropState();
@@ -906,6 +942,7 @@ class _PlanosInputDropState extends State<PlanosInputDrop> {
                 onChanged: (String newValue) {
                   setState(() {
                     dropdownValue = newValue;
+                    this.widget.controller.plano.text = dropdownValue;
                   });
                 },
                 items: <String>[
@@ -1072,14 +1109,16 @@ class BotaoLogin extends StatelessWidget {
 }
 
 class BotaoCadastro extends StatelessWidget {
-  const BotaoCadastro({
-    Key key,
-    @required this.width,
-    @required this.height,
-  }) : super(key: key);
+  const BotaoCadastro(
+      {Key key,
+      @required this.width,
+      @required this.height,
+      @required this.controller})
+      : super(key: key);
 
   final double width;
   final double height;
+  final CadastroController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -1093,8 +1132,16 @@ class BotaoCadastro extends StatelessWidget {
         ),
         color: Constants.COLORS[6],
         textColor: Constants.COLORS[0],
-        //TODO FAZER ROTA DE CADASTRO
-        onPressed: () {},
+        onPressed: () async {
+          showDialog(
+            context: context,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
+          Navigator.popAndPushNamed(context, '/home',
+              arguments: await controller.registrarAluno());
+        },
         child: Text(
           "cadastro".toUpperCase(),
           style: TextStyle(

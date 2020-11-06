@@ -11,7 +11,7 @@ class AppWidget extends StatelessWidget {
         fontFamily: 'Futura',
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/cadastro',
+      initialRoute: '/splash',
       onGenerateRoute: Modular.generateRoute,
       debugShowCheckedModeBanner: false,
     );

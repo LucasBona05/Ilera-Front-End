@@ -39,6 +39,21 @@ mixin _$CadastroController on _CadastroControllerBase, Store {
     });
   }
 
+  final _$confirmSenhaAtom = Atom(name: '_CadastroControllerBase.confirmSenha');
+
+  @override
+  TextEditingController get confirmSenha {
+    _$confirmSenhaAtom.reportRead();
+    return super.confirmSenha;
+  }
+
+  @override
+  set confirmSenha(TextEditingController value) {
+    _$confirmSenhaAtom.reportWrite(value, super.confirmSenha, () {
+      super.confirmSenha = value;
+    });
+  }
+
   final _$emailAtom = Atom(name: '_CadastroControllerBase.email');
 
   @override
@@ -232,6 +247,7 @@ mixin _$CadastroController on _CadastroControllerBase, Store {
     return '''
 nomeCompleto: ${nomeCompleto},
 senha: ${senha},
+confirmSenha: ${confirmSenha},
 email: ${email},
 genero: ${genero},
 cpf: ${cpf},

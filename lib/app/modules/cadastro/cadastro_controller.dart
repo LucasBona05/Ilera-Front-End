@@ -46,14 +46,19 @@ abstract class _CadastroControllerBase with Store {
 
   @action
   Future<AlunoModel> registrarAluno() async {
-    var pesoDouble = double.parse(peso.text);
-    var alturaDouble = double.parse(altura.text);
-    var cinturaDouble = double.parse(cintura.text);
-    var pescocoDouble = double.parse(pescoco.text);
+    print(peso.text);
+    print(altura.text);
+    print(cintura.text);
+    print(pescoco.text);
+    double pesoDouble = double.parse(peso.text);
+    double alturaDouble = double.parse(altura.text);
+    double cinturaDouble = double.parse(cintura.text);
+    double pescocoDouble = double.parse(pescoco.text);
 
-    ImagemModel fotoDePerfil = ImagemModel();
-    ImagemModel fotoDeFrente = ImagemModel();
-    ImagemModel fotoDeCostas = ImagemModel();
+    print(pesoDouble);
+    print(alturaDouble);
+    print(cinturaDouble);
+    print(pescocoDouble);
 
     return await this.alunoRepository.cadastro(
         nomeCompleto.text,
@@ -61,10 +66,6 @@ abstract class _CadastroControllerBase with Store {
         email.text,
         genero.text,
         cpf.text,
-        telefone.text,
-        fotoDePerfil,
-        fotoDeFrente,
-        fotoDeCostas,
         pesoDouble,
         alturaDouble,
         cinturaDouble,
