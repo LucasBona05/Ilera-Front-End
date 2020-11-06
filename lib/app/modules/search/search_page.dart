@@ -107,56 +107,41 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
                       double.infinity,
                       "Ainda sem profissionais nessa categoria!",
                     )
-                  : _buscaInstrutor == "INSTRUTORES_FISICOS"
-                      ? Padding(
-                          padding: const EdgeInsets.only(top: 10, bottom: 5),
-                          child: ListView.builder(
-                            itemCount: instrutores.length,
-                            shrinkWrap: true,
-                            itemBuilder: (BuildContext context, int index) {
-                              return Padding(
-                                padding: const EdgeInsets.fromLTRB(8, 15, 8, 0),
-                                child: GestureDetector(
-                                  //TODO CONSTRUIR ROTA PARA PERFIL DO INSTRUTOR
-                                  onTap: () {
-                                    print("CLICADO");
-                                  },
-                                  child: blocoInstrutor(
-                                      index, instrutores, "Instrutor Físico"),
-                                ),
-                              );
-                            },
-                          ),
-                        )
-                      : _buscaInstrutor == "PSICOLOGO"
+                  : instrutores == null
+                      ? Center(
+                          child: Padding(
+                          padding: const EdgeInsets.all(10.0),
+                          child: CircularProgressIndicator(),
+                        ))
+                      : _buscaInstrutor == "INSTRUTORES_FISICOS"
                           ? Padding(
                               padding:
                                   const EdgeInsets.only(top: 10, bottom: 5),
                               child: ListView.builder(
-                                itemCount: psicologos.length,
+                                itemCount: instrutores.length,
                                 shrinkWrap: true,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Padding(
                                     padding:
                                         const EdgeInsets.fromLTRB(8, 15, 8, 0),
                                     child: GestureDetector(
-                                      //TODO CONSTRUIR ROTA PARA PERFIL DO PSICOLOGO
+                                      //TODO CONSTRUIR ROTA PARA PERFIL DO INSTRUTOR
                                       onTap: () {
                                         print("CLICADO");
                                       },
-                                      child: blocoInstrutor(
-                                          index, psicologos, "Psicólogo"),
+                                      child: blocoInstrutor(index, instrutores,
+                                          "Instrutor Físico"),
                                     ),
                                   );
                                 },
                               ),
                             )
-                          : _buscaInstrutor == "NUTRICIONISTA"
+                          : _buscaInstrutor == "PSICOLOGO"
                               ? Padding(
                                   padding:
                                       const EdgeInsets.only(top: 10, bottom: 5),
                                   child: ListView.builder(
-                                    itemCount: nutricionistas.length,
+                                    itemCount: psicologos.length,
                                     shrinkWrap: true,
                                     itemBuilder:
                                         (BuildContext context, int index) {
@@ -164,18 +149,44 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
                                         padding: const EdgeInsets.fromLTRB(
                                             8, 15, 8, 0),
                                         child: GestureDetector(
-                                          //TODO CONSTRUIR ROTA PARA PERFIL DO NUTRICIONISTA
+                                          //TODO CONSTRUIR ROTA PARA PERFIL DO PSICOLOGO
                                           onTap: () {
                                             print("CLICADO");
                                           },
-                                          child: blocoInstrutor(index,
-                                              nutricionistas, "Nutricionista"),
+                                          child: blocoInstrutor(
+                                              index, psicologos, "Psicólogo"),
                                         ),
                                       );
                                     },
                                   ),
                                 )
-                              : Container(),
+                              : _buscaInstrutor == "NUTRICIONISTA"
+                                  ? Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 10, bottom: 5),
+                                      child: ListView.builder(
+                                        itemCount: nutricionistas.length,
+                                        shrinkWrap: true,
+                                        itemBuilder:
+                                            (BuildContext context, int index) {
+                                          return Padding(
+                                            padding: const EdgeInsets.fromLTRB(
+                                                8, 15, 8, 0),
+                                            child: GestureDetector(
+                                              //TODO CONSTRUIR ROTA PARA PERFIL DO NUTRICIONISTA
+                                              onTap: () {
+                                                print("CLICADO");
+                                              },
+                                              child: blocoInstrutor(
+                                                  index,
+                                                  nutricionistas,
+                                                  "Nutricionista"),
+                                            ),
+                                          );
+                                        },
+                                      ),
+                                    )
+                                  : Container(),
             ],
           ),
         ),
