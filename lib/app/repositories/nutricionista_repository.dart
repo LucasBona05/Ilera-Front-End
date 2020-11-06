@@ -36,11 +36,13 @@ class NutricionistaRepository {
     };
     print("CAPTURANDO DADOS DO NUTRICIONISTA");
     final response = await _dio.get(
-      '/usuarios/instrutores/obterTodos',
+      '/usuarios/nutricionistas/obterTodos',
       options: Options(headers: headersRequest),
     );
     List<NutricionistaModel> result;
     if (response.statusCode == 200) {
+      print("RESPONSE DATA NUTRICIONISTA");
+      print(response.data);
       List<NutricionistaModel> result = (response.data as List)
           .map((e) => NutricionistaModel.fromJson(e))
           .toList();

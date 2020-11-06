@@ -206,8 +206,10 @@ class BotaoLogin extends StatelessWidget {
             ),
           );
           try {
-            Navigator.of(context).pushReplacementNamed('/home',
-                arguments: await controller.autenticarAluno());
+            Navigator.of(context).pushReplacementNamed(
+              '/home',
+              arguments: await controller.autenticarAluno(),
+            );
           } catch (e) {
             Navigator.of(context).pushReplacement(
               MaterialPageRoute(

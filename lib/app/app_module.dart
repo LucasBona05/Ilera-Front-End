@@ -8,7 +8,9 @@ import 'package:ilera/app/modules/login/login_controller.dart';
 import 'package:ilera/app/modules/login/login_module.dart';
 import 'package:ilera/app/repositories/aluno_repository.dart';
 import 'package:ilera/app/repositories/dieta_repository.dart';
+import 'package:ilera/app/repositories/instrutor_repository.dart';
 import 'package:ilera/app/repositories/nutricionista_repository.dart';
+import 'package:ilera/app/repositories/psicologo_repository.dart';
 import 'package:ilera/app/repositories/token_repository.dart';
 import 'package:ilera/app/utils/constants.dart';
 
@@ -17,6 +19,7 @@ import 'modules/intro/intro_module.dart';
 import 'modules/search/search_controller.dart';
 import 'modules/search/search_module.dart';
 import 'modules/splash/splash_module.dart';
+import 'modules/start/start_module.dart';
 import 'repositories/treino_repository.dart';
 
 class AppModule extends MainModule {
@@ -26,6 +29,10 @@ class AppModule extends MainModule {
         Bind((inject) => LoginController(inject.get<NutricionistaRepository>(),
             inject.get<AlunoRepository>())),
         Bind((inject) => NutricionistaRepository(
+            inject.get<Dio>(), inject.get<TokenRepository>())),
+        Bind((inject) => PsicologoRepository(
+            inject.get<Dio>(), inject.get<TokenRepository>())),
+        Bind((inject) => InstrutorRepository(
             inject.get<Dio>(), inject.get<TokenRepository>())),
         Bind((inject) =>
             AlunoRepository(inject.get<Dio>(), inject.get<TokenRepository>())),
@@ -37,8 +44,10 @@ class AppModule extends MainModule {
             TreinoRepository(inject.get<Dio>(), inject.get<TokenRepository>())),
         Bind((inject) => HomeController(
             inject.get<TreinoRepository>(), inject.get<DietaRepository>())),
-        Bind((inject) =>
-            SearchController(inject.get<NutricionistaRepository>())),
+        Bind((inject) => SearchController(
+            inject.get<NutricionistaRepository>(),
+            inject.get<InstrutorRepository>(),
+            inject.get<PsicologoRepository>())),
       ];
 
   @override
@@ -48,6 +57,7 @@ class AppModule extends MainModule {
         ModularRouter('/login', module: LoginModule()),
         ModularRouter('/home', module: HomeModule()),
         ModularRouter('/search', module: SearchModule()),
+        ModularRouter('/start', module: StartModule()),
       ];
 
   @override

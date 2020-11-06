@@ -18,6 +18,24 @@ mixin _$SearchController on _SearchControllerBase, Store {
         .run(() => super.getTodosNutricionistas());
   }
 
+  final _$getTodosInstrutoresAsyncAction =
+      AsyncAction('_SearchControllerBase.getTodosInstrutores');
+
+  @override
+  Future<List<InstrutorModel>> getTodosInstrutores() {
+    return _$getTodosInstrutoresAsyncAction
+        .run(() => super.getTodosInstrutores());
+  }
+
+  final _$getTodosPsicologosAsyncAction =
+      AsyncAction('_SearchControllerBase.getTodosPsicologos');
+
+  @override
+  Future<List<PsicologoModel>> getTodosPsicologos() {
+    return _$getTodosPsicologosAsyncAction
+        .run(() => super.getTodosPsicologos());
+  }
+
   @override
   String toString() {
     return '''
