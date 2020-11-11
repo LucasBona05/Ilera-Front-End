@@ -19,7 +19,6 @@ import 'modules/intro/intro_module.dart';
 import 'modules/search/search_controller.dart';
 import 'modules/search/search_module.dart';
 import 'modules/splash/splash_module.dart';
-import 'modules/start/start_module.dart';
 import 'repositories/treino_repository.dart';
 
 class AppModule extends MainModule {
@@ -57,7 +56,6 @@ class AppModule extends MainModule {
         ModularRouter('/login', module: LoginModule()),
         ModularRouter('/home', module: HomeModule()),
         ModularRouter('/search', module: SearchModule()),
-        ModularRouter('/start', module: StartModule()),
       ];
 
   @override
