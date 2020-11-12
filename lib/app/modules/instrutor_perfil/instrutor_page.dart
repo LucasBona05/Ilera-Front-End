@@ -101,6 +101,7 @@ class _InstrutorPageState extends State<InstrutorPage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   BotaoPerfilInstrutor(
+                    //TODO BOTAR POPUP DE PERGUNTA
                     onTap: () {},
                     height: hsz(40),
                     width: wsz(150),
@@ -108,6 +109,7 @@ class _InstrutorPageState extends State<InstrutorPage> {
                     text: "Perguntar",
                   ),
                   BotaoPerfilInstrutor(
+                    //TODO COLOCAR POPUP DE AGENDAMENTO
                     onTap: () {},
                     height: hsz(40),
                     width: wsz(150),
@@ -120,6 +122,7 @@ class _InstrutorPageState extends State<InstrutorPage> {
             Padding(
               padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
               child: BotaoPerfilInstrutor(
+                //TODO COLOCAR ROTA DA TELA DE CHAT
                 onTap: () {},
                 height: hsz(40),
                 color: Constants.COLORS[5],

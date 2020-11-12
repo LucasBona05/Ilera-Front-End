@@ -5,6 +5,7 @@ import 'package:ilera/app/models/nutricionista_model.dart';
 import 'package:ilera/app/models/psicologo_model.dart';
 import 'package:ilera/app/modules/instrutor_perfil/instrutor_page.dart';
 import 'package:ilera/app/modules/nutricionista_perfil/nutricionista_page.dart';
+import 'package:ilera/app/modules/psicologo_perfil/psicologo_page.dart';
 import 'package:ilera/app/modules/search/search_controller.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
@@ -127,7 +128,6 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
                                     padding:
                                         const EdgeInsets.fromLTRB(8, 15, 8, 0),
                                     child: GestureDetector(
-                                      //TODO CONSTRUIR ROTA PARA PERFIL DO INSTRUTOR
                                       onTap: () {
                                         Navigator.of(context).push(
                                           MaterialPageRoute(
@@ -160,8 +160,17 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
                                         padding: const EdgeInsets.fromLTRB(
                                             8, 15, 8, 0),
                                         child: GestureDetector(
-                                          //TODO CONSTRUIR ROTA PARA PERFIL DO PSICOLOGO
                                           onTap: () {
+                                            Navigator.of(context).push(
+                                              MaterialPageRoute(
+                                                builder: (context) {
+                                                  return PsicologoPage(
+                                                    psicologo:
+                                                        psicologos[index],
+                                                  );
+                                                },
+                                              ),
+                                            );
                                             print("CLICADO");
                                           },
                                           child: blocoInstrutor(
@@ -184,7 +193,6 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
                                             padding: const EdgeInsets.fromLTRB(
                                                 8, 15, 8, 0),
                                             child: GestureDetector(
-                                              //TODO CONSTRUIR ROTA PARA PERFIL DO NUTRICIONISTA
                                               onTap: () {
                                                 Navigator.of(context).push(
                                                   MaterialPageRoute(

@@ -1,20 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:ilera/app/models/nutricionista_model.dart';
+import 'package:ilera/app/models/psicologo_model.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
 import 'package:simple_code/simple_code.dart';
 
-class NutricionistaPage extends StatefulWidget {
-  final NutricionistaModel nutricionista;
-  const NutricionistaPage({Key key, this.nutricionista}) : super(key: key);
+class PsicologoPage extends StatefulWidget {
+  final PsicologoModel psicologo;
+  const PsicologoPage({Key key, this.psicologo}) : super(key: key);
   @override
-  _NutricionistaPageState createState() => _NutricionistaPageState();
+  _PsicologoPageState createState() => _PsicologoPageState();
 }
 
-class _NutricionistaPageState extends State<NutricionistaPage> {
+class _PsicologoPageState extends State<PsicologoPage> {
   @override
   Widget build(BuildContext context) {
-    NutricionistaModel nutricionista = widget.nutricionista;
+    PsicologoModel psicologo = widget.psicologo;
     return Scaffold(
       appBar: Conponents.ileraAppBar("Illera", context),
       bottomNavigationBar: Conponents.ileraBottomAppBar(
@@ -46,7 +47,7 @@ class _NutricionistaPageState extends State<NutricionistaPage> {
                         child: CircleAvatar(
                           backgroundColor: Constants.COLORS[2],
                           backgroundImage: NetworkImage(
-                              '${nutricionista.fotoDePerfil.imageUrl}'),
+                              '${psicologo.fotoDePerfil.imageUrl}'),
                           radius: 50,
                         ),
                       ),
@@ -54,7 +55,7 @@ class _NutricionistaPageState extends State<NutricionistaPage> {
                         height: hsz(10),
                       ),
                       Text(
-                        "${nutricionista.nomeCompleto}",
+                        "${psicologo.nomeCompleto}",
                         style: TextStyle(
                           color: Constants.COLORS[3],
                           fontSize: sz(20),
@@ -64,7 +65,7 @@ class _NutricionistaPageState extends State<NutricionistaPage> {
                         height: hsz(10),
                       ),
                       Text(
-                        "Nutricionista",
+                        "Psicologo",
                         style: TextStyle(
                           color: Constants.COLORS[2],
                           fontSize: sz(15),
@@ -85,7 +86,7 @@ class _NutricionistaPageState extends State<NutricionistaPage> {
                 ),
                 child: Center(
                   child: Text(
-                    "${nutricionista.alunos.length} Alunos",
+                    "${psicologo.alunos.length} Alunos",
                     style: TextStyle(
                       color: Constants.COLORS[2],
                       fontSize: sz(20),
