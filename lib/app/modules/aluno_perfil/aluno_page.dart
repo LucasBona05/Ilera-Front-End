@@ -32,7 +32,7 @@ class _AlunoPageState extends State<AlunoPage> {
         child: ListView(
           children: [
             Padding(
-              padding: const EdgeInsets.fromLTRB(30, 50, 30, 20),
+              padding: const EdgeInsets.fromLTRB(30, 30, 30, 20),
               child: Container(
                 decoration: BoxDecoration(
                   color: Constants.COLORS[0],
@@ -51,6 +51,26 @@ class _AlunoPageState extends State<AlunoPage> {
                           backgroundImage: AssetImage(
                               'assets/images/jpg/defaultProfilePicture.jpg'),
                           radius: 50,
+                        ),
+                      ),
+                      SizedBox(
+                        height: hsz(10),
+                      ),
+                      Text(
+                        "${aluno.nomeCompleto}",
+                        style: TextStyle(
+                          color: Constants.COLORS[3],
+                          fontSize: sz(20),
+                        ),
+                      ),
+                      SizedBox(
+                        height: hsz(10),
+                      ),
+                      Text(
+                        "Instrutor Físico",
+                        style: TextStyle(
+                          color: Constants.COLORS[2],
+                          fontSize: sz(15),
                         ),
                       ),
                     ],
