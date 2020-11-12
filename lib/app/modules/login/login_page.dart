@@ -8,7 +8,7 @@ class LoginPage extends StatefulWidget {
   _LoginPageState createState() => _LoginPageState();
 }
 
-bool _showPassword = false;
+bool _showPassword = true;
 
 class _LoginPageState extends ModularState<LoginPage, LoginController> {
   @override
@@ -72,12 +72,6 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
                           },
                         ),
                       ),
-                      // EmailInputButton(
-                      //   height: height,
-                      //   width: width,
-                      //   controller: controller,
-                      //   hint: "Email",
-                      // ),
                       SizedBox(height: height * 0.05),
 
                       ///Senha Input
@@ -211,8 +205,18 @@ class BotaoLogin extends StatelessWidget {
               child: CircularProgressIndicator(),
             ),
           );
-          Navigator.popAndPushNamed(context, '/home',
-              arguments: await controller.autenticarAluno());
+          try {
+            Navigator.of(context).pushReplacementNamed(
+              '/home',
+              arguments: await controller.autenticarAluno(),
+            );
+          } catch (e) {
+            Navigator.of(context).pushReplacement(
+              MaterialPageRoute(
+                builder: (context) => Error(),
+              ),
+            );
+          }
         },
         child: Text(
           "login".toUpperCase(),
@@ -225,45 +229,37 @@ class BotaoLogin extends StatelessWidget {
   }
 }
 
-class EmailInputButton extends StatelessWidget {
-  final String hint;
-  final double height;
-  final double width;
-  final LoginController controller;
-  const EmailInputButton({
-    Key key,
-    @required this.height,
-    @required this.width,
-    @required this.controller,
-    this.hint,
-  }) : super(key: key);
+class Error extends StatefulWidget {
+  @override
+  _ErrorState createState() => _ErrorState();
+}
 
+class _ErrorState extends State<Error> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 45,
-      width: width * 0.9,
-      decoration: BoxDecoration(
-        color: Constants.COLORS[0],
-        borderRadius: BorderRadius.circular(25),
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Constants.COLORS[5],
+        title: Text(
+          'erro'.toUpperCase(),
+          style: TextStyle(
+              color: Constants.COLORS[0], fontFamily: 'Flood', fontSize: 35),
+        ),
+        automaticallyImplyLeading: true,
       ),
-      child: TextFormField(
-        keyboardType: TextInputType.text,
-        decoration: InputDecoration(
-          contentPadding: EdgeInsets.only(left: 20),
-          border: InputBorder.none,
-          hintText: hint,
-          hintStyle: TextStyle(
-            color: Constants.COLORS[3],
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        color: Constants.COLORS[1],
+        child: Center(
+          child: Text(
+            "Erro ao realizar o login. Tente novamente",
+            style: TextStyle(
+              color: Constants.COLORS[0],
+              fontSize: 30,
+            ),
           ),
         ),
-        controller: this.controller.email,
-        validator: (value) {
-          if (value.isEmpty) {
-            return "Preencha o campo!";
-          }
-          return null;
-        },
       ),
     );
   }

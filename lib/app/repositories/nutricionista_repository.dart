@@ -28,4 +28,26 @@ class NutricionistaRepository {
     print(nutricionista.toJson());
     return nutricionista;
   }
+
+  Future<List<NutricionistaModel>> getTodosNutricionistas() async {
+    JsonWebTokenModel jwt = await _token.getToken();
+    final Map<String, dynamic> headersRequest = {
+      "Authorization": "Bearer ${jwt.jwt}",
+    };
+    print("CAPTURANDO DADOS DO NUTRICIONISTA");
+    final response = await _dio.get(
+      '/usuarios/nutricionistas/obterTodos',
+      options: Options(headers: headersRequest),
+    );
+    List<NutricionistaModel> result;
+    if (response.statusCode == 200) {
+      print("RESPONSE DATA NUTRICIONISTA");
+      print(response.data);
+      List<NutricionistaModel> result = (response.data as List)
+          .map((e) => NutricionistaModel.fromJson(e))
+          .toList();
+      return result;
+    }
+    return result;
+  }
 }

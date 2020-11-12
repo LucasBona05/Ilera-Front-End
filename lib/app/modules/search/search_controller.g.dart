@@ -1,0 +1,45 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'search_controller.dart';
+
+// **************************************************************************
+// StoreGenerator
+// **************************************************************************
+
+// ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic
+
+mixin _$SearchController on _SearchControllerBase, Store {
+  final _$getTodosNutricionistasAsyncAction =
+      AsyncAction('_SearchControllerBase.getTodosNutricionistas');
+
+  @override
+  Future<List<NutricionistaModel>> getTodosNutricionistas() {
+    return _$getTodosNutricionistasAsyncAction
+        .run(() => super.getTodosNutricionistas());
+  }
+
+  final _$getTodosInstrutoresAsyncAction =
+      AsyncAction('_SearchControllerBase.getTodosInstrutores');
+
+  @override
+  Future<List<InstrutorModel>> getTodosInstrutores() {
+    return _$getTodosInstrutoresAsyncAction
+        .run(() => super.getTodosInstrutores());
+  }
+
+  final _$getTodosPsicologosAsyncAction =
+      AsyncAction('_SearchControllerBase.getTodosPsicologos');
+
+  @override
+  Future<List<PsicologoModel>> getTodosPsicologos() {
+    return _$getTodosPsicologosAsyncAction
+        .run(() => super.getTodosPsicologos());
+  }
+
+  @override
+  String toString() {
+    return '''
+
+    ''';
+  }
+}

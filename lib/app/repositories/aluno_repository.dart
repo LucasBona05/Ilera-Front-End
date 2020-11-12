@@ -18,26 +18,14 @@ class AlunoRepository {
       "Authorization": "Bearer ${jwt.jwt}",
     };
 
-    var response;
     AlunoModel aluno;
-    try {
-      response = await _dio.post('/usuarios/alunos/login',
-          data: bodyRequest, options: Options(headers: headersRequest));
-      print(response.data);
-      aluno = new AlunoModel(
-        cpf: response.data['cpf'],
-        email: response.data['email'],
-        id: response.data['id'],
-        genero: response.data['genero'],
-        nomeCompleto: response.data['nomeCompleto'],
-        telefone: response.data['telefone'],
-        plano: response.data['plano'],
-        peso: response.data['peso'],
-        altura: response.data['altura'],
-      );
-    } on DioError catch (err) {
-      print('STATUS CODE ${err.response.statusCode}');
+    final response = await _dio.post('/usuarios/alunos/login',
+        data: bodyRequest, options: Options(headers: headersRequest));
+    print(response.data);
+    if (response.statusCode == 200) {
+      aluno = AlunoModel.fromJson(response.data);
     }
+
     return aluno;
   }
 
