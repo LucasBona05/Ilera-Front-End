@@ -4,6 +4,7 @@ import 'package:ilera/app/models/instrutor_model.dart';
 import 'package:ilera/app/models/nutricionista_model.dart';
 import 'package:ilera/app/models/psicologo_model.dart';
 import 'package:ilera/app/modules/instrutor_perfil/instrutor_page.dart';
+import 'package:ilera/app/modules/nutricionista_perfil/nutricionista_page.dart';
 import 'package:ilera/app/modules/search/search_controller.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
@@ -185,6 +186,17 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
                                             child: GestureDetector(
                                               //TODO CONSTRUIR ROTA PARA PERFIL DO NUTRICIONISTA
                                               onTap: () {
+                                                Navigator.of(context).push(
+                                                  MaterialPageRoute(
+                                                    builder: (context) {
+                                                      return NutricionistaPage(
+                                                        nutricionista:
+                                                            nutricionistas[
+                                                                index],
+                                                      );
+                                                    },
+                                                  ),
+                                                );
                                                 print("CLICADO");
                                               },
                                               child: blocoInstrutor(

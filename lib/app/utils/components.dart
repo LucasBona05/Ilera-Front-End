@@ -92,3 +92,50 @@ class Conponents {
     );
   }
 }
+
+class BotaoPerfilInstrutor extends StatelessWidget {
+  final Function onTap;
+  final double height;
+  final double width;
+  final String text;
+  final Color color;
+  const BotaoPerfilInstrutor({
+    Key key,
+    this.onTap,
+    this.height,
+    this.width,
+    this.text,
+    this.color,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          color: color,
+          borderRadius: BorderRadius.circular(25),
+          boxShadow: <BoxShadow>[
+            BoxShadow(
+              color: Colors.grey[900],
+              blurRadius: 15,
+              offset: Offset(0, 5),
+            ),
+          ],
+        ),
+        child: Center(
+          child: Text(
+            "$text",
+            style: TextStyle(
+              color: Constants.COLORS[0],
+              fontSize: sz(17),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
