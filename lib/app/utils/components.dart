@@ -75,9 +75,9 @@ class Conponents {
               child: GestureDetector(
                 onTap: () {
                   print("CLICADO");
-                  // if (three != selected) {
-                  //   Navigator.pushNamed(context, "/perfil");
-                  // }
+                  if (three != selected) {
+                    Navigator.pushNamed(context, "/aluno");
+                  }
                 },
                 child: Icon(
                   Icons.person,

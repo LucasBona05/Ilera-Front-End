@@ -2,6 +2,8 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ilera/app/app_widget.dart';
+import 'package:ilera/app/modules/cadastro/cadastro_controller.dart';
+import 'package:ilera/app/modules/cadastro/cadastro_module.dart';
 import 'package:ilera/app/modules/home/home_controller.dart';
 import 'package:ilera/app/modules/home/home_module.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
@@ -15,6 +17,7 @@ import 'package:ilera/app/repositories/token_repository.dart';
 import 'package:ilera/app/utils/constants.dart';
 
 import 'app_controller.dart';
+import 'modules/aluno_perfil/aluno_module.dart';
 import 'modules/intro/intro_module.dart';
 import 'modules/search/search_controller.dart';
 import 'modules/search/search_module.dart';
@@ -27,6 +30,7 @@ class AppModule extends MainModule {
         $AppController,
         Bind((inject) => LoginController(inject.get<NutricionistaRepository>(),
             inject.get<AlunoRepository>())),
+        Bind((inject) => CadastroController(inject.get<AlunoRepository>())),
         Bind((inject) => NutricionistaRepository(
             inject.get<Dio>(), inject.get<TokenRepository>())),
         Bind((inject) => PsicologoRepository(
@@ -55,7 +59,10 @@ class AppModule extends MainModule {
         ModularRouter('/intro', module: IntroModule()),
         ModularRouter('/login', module: LoginModule()),
         ModularRouter('/home', module: HomeModule()),
+        ModularRouter('/cadastro', module: CadastroModule()),
         ModularRouter('/search', module: SearchModule()),
+        ModularRouter('/start', module: StartModule()),
+        ModularRouter('/aluno', module: AlunoModule()),
       ];
 
   @override

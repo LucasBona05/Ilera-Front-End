@@ -35,25 +35,27 @@ class AlunoRepository {
       String email,
       String genero,
       String cpf,
-      String telefone,
-      ImagemModel fotoDePerfil,
-      ImagemModel fotoDeFrente,
-      ImagemModel fotoDeCostas,
       double peso,
       double altura,
       double cintura,
       double pescoco,
       String plano) async {
+    final aluno = new AlunoModel(
+        altura: altura,
+        cintura: cintura,
+        cpf: cpf,
+        email: email,
+        genero: genero,
+        nomeCompleto: nomeCompleto,
+        pescoco: pescoco,
+        peso: peso,
+        plano: plano);
     final Map<String, dynamic> bodyRequest = {
       "nomeCompleto": nomeCompleto,
       "senha": senha,
       "email": email,
       "genero": genero,
       "cpf": cpf,
-      "telefone": telefone,
-      "fotoDePerfil": fotoDePerfil,
-      "fotoDeFrente": fotoDeFrente,
-      "fotoDeCostas": fotoDeCostas,
       "peso": peso,
       "altura": altura,
       "cintura": cintura,
@@ -67,9 +69,10 @@ class AlunoRepository {
     var response;
     try {
       response = await _dio.post('/usuarios/alunos/registrar',
-          data: bodyRequest, options: Options(headers: headersRequest));
+          data: aluno.toJson(), options: Options(headers: headersRequest));
     } catch (e) {
       print('Uma exception foi encontrada...');
+      throw e;
     } finally {
       print(response.data);
       AlunoModel aluno = new AlunoModel(
@@ -77,12 +80,8 @@ class AlunoRepository {
           email: response.data['email'],
           genero: response.data['genero'],
           cpf: response.data['cpf'],
-          telefone: response.data['telefone'],
-          fotoDePerfil: response.data['fotoDePerfil'],
-          fotoDeFrente: response.data['fotoDeFrente'],
-          fotoDeCostas: response.data['fotoDeCostas'],
           peso: response.data['peso'],
-          altura: response.data['peso'],
+          altura: response.data['altura'],
           cintura: response.data['cintura'],
           pescoco: response.data['pescoco'],
           plano: response.data['plano']);

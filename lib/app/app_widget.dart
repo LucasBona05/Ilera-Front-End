@@ -13,7 +13,7 @@ class AppWidget extends StatelessWidget {
         fontFamily: 'Futura',
         primarySwatch: Colors.blue,
       ),
-      initialRoute: '/splash',
+      initialRoute: '/login',
       onGenerateRoute: Modular.generateRoute,
       debugShowCheckedModeBanner: false,
     );
