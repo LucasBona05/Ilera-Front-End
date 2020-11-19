@@ -139,3 +139,54 @@ class BotaoPerfilInstrutor extends StatelessWidget {
     );
   }
 }
+
+class BottomNavigatorBarWidget extends StatelessWidget {
+  final List<BottomNavBarItemWidget> items;
+  const BottomNavigatorBarWidget({Key key, this.items}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: hsz(80),
+      color: Constants.COLORS[3],
+      child: ListView.separated(
+        itemCount: items.length + 1,
+        physics: NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return index == 0 ? Container() : items[index - 1];
+        },
+        separatorBuilder: (_, i) {
+          return SizedBox(
+            width: wsz(25),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class BottomNavBarItemWidget extends StatelessWidget {
+  final IconData icon;
+  final bool isActivated;
+  final Function onPressed;
+  final Color color;
+
+  const BottomNavBarItemWidget(
+      {Key key, this.icon, this.isActivated, this.onPressed, this.color})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: InkWell(
+        onTap: onPressed,
+        child: SizedBox(
+          child: Icon(
+            icon,
+            color: isActivated ? this.color : Constants.COLORS[6],
+          ),
+        ),
+      ),
+    );
+  }
+}

@@ -3,6 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ilera/app/models/dieta_model.dart';
 import 'package:ilera/app/models/ficha_de_treino_model.dart';
 import 'package:ilera/app/models/pessoa_model.dart';
+import 'package:ilera/app/modules/aluno_perfil/aluno_page.dart';
+import 'package:ilera/app/modules/search/search_page.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
 

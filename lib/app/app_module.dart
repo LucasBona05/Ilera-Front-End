@@ -8,6 +8,7 @@ import 'package:ilera/app/modules/home/home_controller.dart';
 import 'package:ilera/app/modules/home/home_module.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
 import 'package:ilera/app/modules/login/login_module.dart';
+import 'package:ilera/app/modules/page_controller/page_controller_module.dart';
 import 'package:ilera/app/repositories/aluno_repository.dart';
 import 'package:ilera/app/repositories/dieta_repository.dart';
 import 'package:ilera/app/repositories/instrutor_repository.dart';
@@ -61,8 +62,8 @@ class AppModule extends MainModule {
         ModularRouter('/home', module: HomeModule()),
         ModularRouter('/cadastro', module: CadastroModule()),
         ModularRouter('/search', module: SearchModule()),
-        ModularRouter('/start', module: StartModule()),
         ModularRouter('/aluno', module: AlunoModule()),
+        ModularRouter('/page_controller', module: PageControllerModule()),
       ];
 
   @override
