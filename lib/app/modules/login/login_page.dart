@@ -161,8 +161,11 @@ class BotaoCadastro extends StatelessWidget {
         ),
         color: Constants.COLORS[6],
         textColor: Constants.COLORS[0],
-        //TODO FAZER ROTA DE CADASTRO
-        onPressed: () {},
+        onPressed: () {
+          Navigator.of(context).pushReplacementNamed(
+            '/cadastro',
+          );
+        },
         child: Text(
           "cadastro".toUpperCase(),
           style: TextStyle(
