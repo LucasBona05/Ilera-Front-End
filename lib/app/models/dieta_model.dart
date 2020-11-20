@@ -10,7 +10,6 @@ class DietaModel {
 
   DietaModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
-    //aluno = json['aluno'];
     if (json['refeicoes'] != null) {
       refeicoes = new List<RefeicaoModel>();
       json['refeicoes'].forEach((v) {
