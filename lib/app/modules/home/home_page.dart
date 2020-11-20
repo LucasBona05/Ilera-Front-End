@@ -7,6 +7,7 @@ import 'package:ilera/app/modules/aluno_perfil/aluno_page.dart';
 import 'package:ilera/app/modules/search/search_page.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
+import 'package:simple_code/simple_code.dart';
 
 import 'home_controller.dart';
 
@@ -39,6 +40,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       ///AppBar
+      drawer: Conponents.ileraMenuDrawer(context),
       appBar: Conponents.ileraAppBar("ilera", context, null),
 
       ///Body
@@ -48,9 +50,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
             : Container(
                 color: Constants.COLORS[1],
                 child: Padding(
-                  padding: const EdgeInsets.all(20.0),
+                  padding: const EdgeInsets.only(left: 20.0, right: 20.0),
                   child: ListView(
                     children: [
+                      SizedBox(height: sz(10)),
                       Text(
                         "Próximas Sessões",
                         style: TextStyle(
@@ -92,7 +95,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                     padding: const EdgeInsets.only(bottom: 10),
                                     child: Container(
                                       width: width * 0.3,
-                                      height: 100,
                                       decoration: BoxDecoration(
                                         color: Constants.COLORS[0],
                                         borderRadius: BorderRadius.circular(15),
@@ -100,6 +102,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                       child: Padding(
                                         padding: const EdgeInsets.all(20.0),
                                         child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
                                           children: [
                                             Container(
                                               width: width * 0.5,
@@ -108,17 +112,16 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                                     .descricao,
                                                 style: TextStyle(
                                                   color: Constants.COLORS[3],
-                                                  fontSize: 20,
+                                                  fontSize: sz(20),
                                                 ),
                                               ),
                                             ),
-                                            SizedBox(width: width * 0.08),
                                             Text(
                                               aluno.dieta.refeicoes[index]
                                                   .horario,
                                               style: TextStyle(
                                                 color: Constants.COLORS[1],
-                                                fontSize: 30,
+                                                fontSize: sz(30),
                                               ),
                                             ),
                                           ],
@@ -154,13 +157,16 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                     padding: const EdgeInsets.only(bottom: 10),
                                     child: Container(
                                       width: width * 0.3,
-                                      height: 200,
                                       decoration: BoxDecoration(
                                         color: Constants.COLORS[0],
                                         borderRadius: BorderRadius.circular(15),
                                       ),
                                       child: Padding(
-                                        padding: const EdgeInsets.all(12.0),
+                                        padding: const EdgeInsets.only(
+                                            top: 16.0,
+                                            bottom: 16.0,
+                                            left: 10,
+                                            right: 10),
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
@@ -172,10 +178,10 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                                   .nomeDoExercicio,
                                               style: TextStyle(
                                                 color: Constants.COLORS[2],
-                                                fontSize: 25,
+                                                fontSize: sz(25),
                                               ),
                                             ),
-                                            SizedBox(height: 10),
+                                            SizedBox(height: sz(10)),
                                             Text(
                                               aluno
                                                   .fichaDeTreino
@@ -183,20 +189,20 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                                   .descricaoDoExercicio,
                                               style: TextStyle(
                                                 color: Constants.COLORS[3],
-                                                fontSize: 20,
+                                                fontSize: sz(20),
                                               ),
                                             ),
-                                            SizedBox(height: 10),
+                                            SizedBox(height: sz(10)),
                                             Row(
                                               children: [
                                                 Text(
                                                   "Repetições:",
                                                   style: TextStyle(
                                                     color: Constants.COLORS[1],
-                                                    fontSize: 20,
+                                                    fontSize: sz(20),
                                                   ),
                                                 ),
-                                                SizedBox(width: 10),
+                                                SizedBox(width: sz(10)),
                                                 Text(
                                                   aluno
                                                       .fichaDeTreino
@@ -205,7 +211,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                                       .identificadorDaSerie,
                                                   style: TextStyle(
                                                     color: Constants.COLORS[3],
-                                                    fontSize: 20,
+                                                    fontSize: sz(20),
                                                   ),
                                                 ),
                                               ],
@@ -213,25 +219,32 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                             Row(
                                               children: [
                                                 Text(
-                                                  "Tempo de descanço:",
+                                                  "Tempo de descanso:",
                                                   style: TextStyle(
                                                     color: Constants.COLORS[1],
-                                                    fontSize: 20,
+                                                    fontSize: sz(20),
                                                   ),
                                                 ),
-                                                SizedBox(width: 10),
-                                                Text(
-                                                  aluno
-                                                          .fichaDeTreino
-                                                          .exercicios[index]
-                                                          .serieDoExercicio
-                                                          .tempoDeDescansoEntreCadaSerie
-                                                          .toString() +
-                                                      " segundos",
-                                                  style: TextStyle(
-                                                    color: Constants.COLORS[3],
-                                                    fontSize: 20,
-                                                  ),
+                                                SizedBox(width: sz(10)),
+                                                Column(
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.start,
+                                                  children: [
+                                                    Text(
+                                                      aluno
+                                                              .fichaDeTreino
+                                                              .exercicios[index]
+                                                              .serieDoExercicio
+                                                              .tempoDeDescansoEntreCadaSerie
+                                                              .toString() +
+                                                          "s",
+                                                      style: TextStyle(
+                                                        color:
+                                                            Constants.COLORS[3],
+                                                        fontSize: sz(20),
+                                                      ),
+                                                    ),
+                                                  ],
                                                 ),
                                               ],
                                             ),
@@ -256,19 +269,21 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   Container informacaoVazia(double width, String text) {
     return Container(
       width: width * 0.3,
-      height: 100,
       decoration: BoxDecoration(
         color: Constants.COLORS[0],
         borderRadius: BorderRadius.circular(15),
       ),
-      child: Center(
-        child: Padding(
-          padding: const EdgeInsets.only(left: 30),
-          child: Text(
-            "$text",
-            style: TextStyle(
-              color: Constants.COLORS[3],
-              fontSize: 22,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 12.0, bottom: 12.0),
+        child: Center(
+          child: Padding(
+            padding: const EdgeInsets.only(left: 30),
+            child: Text(
+              "$text",
+              style: TextStyle(
+                color: Constants.COLORS[3],
+                fontSize: sz(22),
+              ),
             ),
           ),
         ),

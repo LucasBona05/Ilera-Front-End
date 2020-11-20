@@ -20,15 +20,88 @@ class Conponents {
       ),
       actions: actions,
       backgroundColor: Constants.COLORS[5],
+      centerTitle: true,
       title: Text(
         '$text'.toUpperCase(),
         style: TextStyle(
             color: Constants.COLORS[0], fontFamily: 'Flood', fontSize: sz(35)),
       ),
-      automaticallyImplyLeading: false,
     );
   }
-}
+
+  static Drawer ileraMenuDrawer(BuildContext context) {
+    return Drawer(
+      child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Text(
+              '',
+              style: TextStyle(color: Constants.COLORS[0], fontSize: 25),
+            ),
+            decoration: BoxDecoration(
+                color: Constants.COLORS[5],
+                image: DecorationImage(
+                    fit: BoxFit.fill,
+                    image: AssetImage('assets/images/png/tela_2.png'))),
+          ),
+          SizedBox(
+            height: hsz(10),
+          ),
+          ListTile(
+            leading: Icon(
+              Icons.border_color,
+              color: Constants.COLORS[0],
+            ),
+            title: Text('Editar perfil',
+                style: TextStyle(color: Constants.COLORS[0])),
+            tileColor: Constants.COLORS[2],
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          SizedBox(
+            height: hsz(10),
+          ),
+          ListTile(
+            leading: Icon(Icons.settings, color: Constants.COLORS[0]),
+            title: Text('Gerenciar instrutores',
+                style: TextStyle(color: Constants.COLORS[0])),
+            tileColor: Constants.COLORS[2],
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          SizedBox(
+            height: hsz(10),
+          ),
+          ListTile(
+            leading: Icon(Icons.app_registration, color: Constants.COLORS[0]),
+            title: Text('Alterar plano',
+                style: TextStyle(color: Constants.COLORS[0])),
+            tileColor: Constants.COLORS[2],
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          SizedBox(
+            height: hsz(10),
+          ),
+          ListTile(
+            leading: Icon(Icons.question_answer, color: Constants.COLORS[0]),
+            title: Text('Perguntas recorrentes',
+                style: TextStyle(color: Constants.COLORS[0])),
+            tileColor: Constants.COLORS[2],
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          SizedBox(
+            height: hsz(10),
+          ),
+          ListTile(
+            leading: Icon(Icons.exit_to_app, color: Constants.COLORS[0]),
+            title: Text('Sair', style: TextStyle(color: Constants.COLORS[0])),
+            tileColor: Constants.COLORS[2],
+            onTap: () => {Navigator.pop(context)},
+          ),
+        ],
+      ),
+    );
+  }
+
 
 class BotaoPerfilInstrutor extends StatelessWidget {
   final Function onTap;
