@@ -20,7 +20,7 @@ class _AlunoPageState extends State<AlunoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Conponents.ileraAppBar("Ilera", context),
+      appBar: Conponents.ileraAppBar("Ilera", context, null),
       body: Container(
         color: Constants.COLORS[1],
         child: ListView(

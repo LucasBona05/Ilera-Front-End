@@ -39,7 +39,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       ///AppBar
-      appBar: Conponents.ileraAppBar("ilera", context),
+      appBar: Conponents.ileraAppBar("ilera", context, null),
 
       ///Body
       body: Center(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ilera/app/models/pessoa_model.dart';
 import 'package:ilera/app/modules/aluno_perfil/aluno_page.dart';
 import 'package:ilera/app/modules/home/home_page.dart';
 import 'package:ilera/app/modules/search/search_page.dart';
@@ -7,13 +8,19 @@ import 'package:ilera/app/utils/constants.dart';
 import 'package:ilera/app/utils/constants.dart';
 
 class PageController extends StatefulWidget {
+  final AlunoModel alunoModel;
+
+  const PageController({Key key, this.alunoModel}) : super(key: key);
   @override
-  _PageControllerState createState() => _PageControllerState();
+  _PageControllerState createState() => _PageControllerState(aluno: alunoModel);
 }
 
 class _PageControllerState extends State<PageController> {
+  final AlunoModel aluno;
   List<bool> bottomNavBarPosition = [true, false, false, false, false];
   int currentBottomNavBarPosition = 0;
+
+  _PageControllerState({this.aluno});
 
   interactBottomNavBar(int position) {
     if (currentBottomNavBarPosition != position) {
@@ -71,7 +78,9 @@ class _PageControllerState extends State<PageController> {
   void changeBodyUI(int position) {
     setState(() {
       if (position == 0)
-        body = HomePage();
+        body = HomePage(
+          alunoModel: aluno,
+        );
       else if (position == 1) {
         body = SearchPage();
       } else if (position == 2) {

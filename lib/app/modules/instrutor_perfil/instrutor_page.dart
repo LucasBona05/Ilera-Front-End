@@ -16,7 +16,21 @@ class _InstrutorPageState extends State<InstrutorPage> {
   Widget build(BuildContext context) {
     InstrutorModel instrutor = widget.instrutor;
     return Scaffold(
-      appBar: Conponents.ileraAppBar("Illera", context),
+      appBar: Conponents.ileraAppBar("Illera", context, [
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.search,
+              color: Constants.COLORS[0],
+              size: sz(26),
+            ),
+          ),
+        )
+      ]),
       body: Container(
         color: Constants.COLORS[1],
         child: ListView(
