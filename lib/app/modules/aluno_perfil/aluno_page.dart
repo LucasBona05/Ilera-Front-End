@@ -1,8 +1,5 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:ilera/app/models/instrutor_model.dart';
 
 import 'package:ilera/app/models/pessoa_model.dart';
 import 'package:ilera/app/modules/aluno_perfil/aluno_controller.dart';

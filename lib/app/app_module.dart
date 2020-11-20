@@ -9,7 +9,6 @@ import 'package:ilera/app/modules/home/home_controller.dart';
 import 'package:ilera/app/modules/home/home_module.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
 import 'package:ilera/app/modules/login/login_module.dart';
-import 'package:ilera/app/modules/aluno_perfil/aluno_controller.dart';
 import 'package:ilera/app/repositories/aluno_repository.dart';
 import 'package:ilera/app/repositories/dieta_repository.dart';
 import 'package:ilera/app/repositories/instrutor_repository.dart';
