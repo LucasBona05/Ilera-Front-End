@@ -17,12 +17,6 @@ class _NutricionistaPageState extends State<NutricionistaPage> {
     NutricionistaModel nutricionista = widget.nutricionista;
     return Scaffold(
       appBar: Conponents.ileraAppBar("Illera", context),
-      bottomNavigationBar: Conponents.ileraBottomAppBar(
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        context,
-      ),
       body: Container(
         color: Constants.COLORS[1],
         child: ListView(

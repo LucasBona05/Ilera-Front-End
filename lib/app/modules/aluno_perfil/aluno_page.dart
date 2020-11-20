@@ -21,12 +21,6 @@ class _AlunoPageState extends State<AlunoPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Conponents.ileraAppBar("Ilera", context),
-      bottomNavigationBar: Conponents.ileraBottomAppBar(
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        context,
-      ),
       body: Container(
         color: Constants.COLORS[1],
         child: ListView(

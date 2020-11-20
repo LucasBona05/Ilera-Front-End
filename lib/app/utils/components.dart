@@ -147,8 +147,8 @@ class BottomNavigatorBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: hsz(80),
-      color: Constants.COLORS[3],
+      height: hsz(70),
+      color: Constants.COLORS[5],
       child: ListView.separated(
         itemCount: items.length + 1,
         physics: NeverScrollableScrollPhysics(),
@@ -158,7 +158,7 @@ class BottomNavigatorBarWidget extends StatelessWidget {
         },
         separatorBuilder: (_, i) {
           return SizedBox(
-            width: wsz(25),
+            width: wsz(60),
           );
         },
       ),
@@ -184,6 +184,7 @@ class BottomNavBarItemWidget extends StatelessWidget {
           child: Icon(
             icon,
             color: isActivated ? this.color : Constants.COLORS[6],
+            size: sz(40),
           ),
         ),
       ),

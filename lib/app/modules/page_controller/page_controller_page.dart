@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ilera/app/modules/aluno_perfil/aluno_page.dart';
 import 'package:ilera/app/modules/home/home_page.dart';
 import 'package:ilera/app/modules/search/search_page.dart';
+import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
 import 'package:ilera/app/utils/constants.dart';
 
@@ -56,7 +57,7 @@ class _PageControllerState extends State<PageController> {
           ),
           new BottomNavBarItemWidget(
             color: Constants.COLORS[0],
-            icon: Icons.home,
+            icon: Icons.person,
             isActivated: bottomNavBarPosition[2],
             onPressed: () {
               interactBottomNavBar(2);
@@ -74,10 +75,6 @@ class _PageControllerState extends State<PageController> {
       else if (position == 1) {
         body = SearchPage();
       } else if (position == 2) {
-        body = Center(
-          child: Text('Imoveis marcados como favorito pelo usuário'),
-        );
-      } else if (position == 3) {
         body = AlunoPage();
       }
     });

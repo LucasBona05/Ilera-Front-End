@@ -40,12 +40,6 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     return Scaffold(
       ///AppBar
       appBar: Conponents.ileraAppBar("ilera", context),
-      bottomNavigationBar: Conponents.ileraBottomAppBar(
-        Constants.COLORS[2],
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        context,
-      ),
 
       ///Body
       body: Center(

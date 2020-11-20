@@ -47,12 +47,6 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Conponents.ileraAppBar("Busca", context),
-      bottomNavigationBar: Conponents.ileraBottomAppBar(
-        Constants.COLORS[0],
-        Constants.COLORS[2],
-        Constants.COLORS[0],
-        context,
-      ),
       body: Container(
         color: Constants.COLORS[1],
         height: double.infinity,

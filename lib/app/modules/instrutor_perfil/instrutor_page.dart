@@ -17,12 +17,6 @@ class _InstrutorPageState extends State<InstrutorPage> {
     InstrutorModel instrutor = widget.instrutor;
     return Scaffold(
       appBar: Conponents.ileraAppBar("Illera", context),
-      bottomNavigationBar: Conponents.ileraBottomAppBar(
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        context,
-      ),
       body: Container(
         color: Constants.COLORS[1],
         child: ListView(
