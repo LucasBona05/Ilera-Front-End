@@ -5,13 +5,14 @@ import 'aluno_page.dart';
 
 class AlunoModule extends ChildModule {
   @override
-  List<Bind> get binds => [
-        Bind((i) => AlunoController()),
-      ];
+  List<Bind> get binds => [$AlunoController];
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter('/aluno', child: (_, args) => AlunoPage()),
+        ModularRouter('/aluno',
+            child: (_, args) => AlunoPage(
+                  idAluno: args.data,
+                )),
       ];
 
   static Inject get to => Inject<AlunoModule>.of();

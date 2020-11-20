@@ -92,7 +92,7 @@ class Conponents {
 
   //BottomAppBar
   static BottomAppBar ileraBottomAppBar(
-      Color one, Color two, Color three, BuildContext context) {
+      Function onTap, Color one, Color two, Color three, BuildContext context) {
     Color selected = Constants.COLORS[2];
     return BottomAppBar(
       color: Constants.COLORS[5],
@@ -136,12 +136,7 @@ class Conponents {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 33),
               child: GestureDetector(
-                onTap: () {
-                  print("CLICADO");
-                  if (three != selected) {
-                    Navigator.pushNamed(context, "/aluno");
-                  }
-                },
+                onTap: onTap,
                 child: Icon(
                   Icons.person,
                   color: three,

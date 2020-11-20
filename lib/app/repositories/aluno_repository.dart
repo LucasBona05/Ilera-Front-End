@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:ilera/app/models/imagem_model.dart';
 import 'package:ilera/app/models/json_web_token_model.dart';
@@ -88,5 +90,26 @@ class AlunoRepository {
       // ignore: control_flow_in_finally
       return aluno;
     }
+  }
+
+  Future<AlunoModel> obterPeloId(int id) async {
+    JsonWebTokenModel jwt = await _token.getToken();
+    AlunoModel aluno;
+    final Map<String, dynamic> headersRequest = {
+      "Authorization": "Bearer ${jwt.jwt}",
+    };
+    var response;
+    try {
+      response = await _dio.get('/obterPeloId/${id}',
+          options: Options(headers: headersRequest));
+      if (response.statusCode == 200) {
+        aluno = AlunoModel.fromJson(json.decode(response.body));
+      } else {
+        print('Não foi possivel encontrar o aluno');
+      }
+    } catch (e) {
+      print('Exception');
+    }
+    return aluno;
   }
 }

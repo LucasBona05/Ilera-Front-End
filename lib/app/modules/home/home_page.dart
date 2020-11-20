@@ -41,6 +41,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
       appBar: Conponents.ileraAppBar("ilera", context),
       drawer: Conponents.ileraMenuDrawer(context),
       bottomNavigationBar: Conponents.ileraBottomAppBar(
+        () => Navigator.pushNamed(context, '/aluno', arguments: this.aluno.id),
         Constants.COLORS[2],
         Constants.COLORS[0],
         Constants.COLORS[0],
@@ -241,7 +242,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
                                                               .serieDoExercicio
                                                               .tempoDeDescansoEntreCadaSerie
                                                               .toString() +
-                                                          " segundos",
+                                                          "s",
                                                       style: TextStyle(
                                                         color:
                                                             Constants.COLORS[3],
