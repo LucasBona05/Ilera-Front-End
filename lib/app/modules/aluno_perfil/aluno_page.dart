@@ -31,14 +31,7 @@ class _AlunoPageState extends ModularState<AlunoPage, AlunoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Conponents.ileraAppBar("Ilera", context),
-      bottomNavigationBar: Conponents.ileraBottomAppBar(
-        () => Navigator.pushNamed(context, '/aluno', arguments: this.aluno.id),
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        context,
-      ),
+      appBar: Conponents.ileraAppBar("Ilera", context, null),
       body: Container(
         color: Constants.COLORS[1],
         child: ListView(
