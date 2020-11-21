@@ -8,16 +8,6 @@ class Conponents {
   static AppBar ileraAppBar(
       String text, BuildContext context, List<Widget> actions) {
     return AppBar(
-      leading: GestureDetector(
-        //TODO COLOCAR MENU
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Icon(
-          Icons.menu,
-          color: Constants.COLORS[0],
-        ),
-      ),
       actions: actions,
       backgroundColor: Constants.COLORS[5],
       centerTitle: true,
@@ -101,7 +91,7 @@ class Conponents {
       ),
     );
   }
-
+}
 
 class BotaoPerfilInstrutor extends StatelessWidget {
   final Function onTap;

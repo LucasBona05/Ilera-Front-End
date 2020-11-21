@@ -31,6 +31,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   void initState() {
     print(aluno.dieta.refeicoes[0].descricao);
+    this.dieta = this.aluno.dieta;
     super.initState();
   }
 

@@ -31,6 +31,7 @@ class _AlunoPageState extends ModularState<AlunoPage, AlunoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Conponents.ileraMenuDrawer(context),
       appBar: Conponents.ileraAppBar("Ilera", context, null),
       body: Container(
         color: Constants.COLORS[1],
