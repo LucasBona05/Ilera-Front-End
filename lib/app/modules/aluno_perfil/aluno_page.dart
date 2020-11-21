@@ -8,32 +8,32 @@ import 'package:ilera/app/utils/constants.dart';
 import 'package:simple_code/simple_code.dart';
 
 class AlunoPage extends StatefulWidget {
-  final int idAluno;
-  const AlunoPage({Key key, this.idAluno}) : super(key: key);
+  // final int idAluno;
+  // const AlunoPage({Key key, this.idAluno}) : super(key: key);
   @override
   _AlunoPageState createState() => _AlunoPageState();
 }
 
 class _AlunoPageState extends ModularState<AlunoPage, AlunoController> {
-  AlunoModel aluno;
-  _AlunoPageState({this.aluno});
-  @override
-  void initState() {
-    loadAluno();
-    super.initState();
-  }
+  // AlunoModel aluno;
+  // _AlunoPageState({this.aluno});
+  // @override
+  // void initState() {
+  //   loadAluno();
+  //   super.initState();
+  // }
 
-  loadAluno() async {
-    aluno = await controller.getAlunoById(widget.idAluno);
-    print(aluno.toJson());
-  }
+  // loadAluno() async {
+  //   aluno = await controller.getAlunoById(widget.idAluno);
+  //   print(aluno.toJson());
+  // }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: Conponents.ileraAppBar("Ilera", context),
       bottomNavigationBar: Conponents.ileraBottomAppBar(
-        () => Navigator.pushNamed(context, '/aluno', arguments: this.aluno.id),
+        () => Navigator.pushNamed(context, '/aluno'),
         Constants.COLORS[0],
         Constants.COLORS[0],
         Constants.COLORS[0],
@@ -52,70 +52,44 @@ class _AlunoPageState extends ModularState<AlunoPage, AlunoController> {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: FutureBuilder(
-                    future: controller.getAlunoById(widget.idAluno),
-                    builder: (BuildContext context, snapshot) {
-                      List<Widget> children;
-                      if (snapshot.hasData) {
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircleAvatar(
-                              radius: 56,
-                              backgroundColor: Constants.COLORS[2],
-                              child: CircleAvatar(
-                                backgroundColor: Constants.COLORS[2],
-                                backgroundImage: aluno.fotoDePerfil.imageUrl ==
-                                        null
-                                    ? AssetImage(
-                                        'assets/images/jpg/defaultProfilePicture.jpg')
-                                    : NetworkImage(
-                                        '${aluno.fotoDePerfil.imageUrl}'),
-                                radius: 50,
-                              ),
-                            ),
-                            SizedBox(
-                              height: hsz(10),
-                            ),
-                            Text(
-                              "${aluno.nomeCompleto}",
-                              style: TextStyle(
-                                color: Constants.COLORS[3],
-                                fontSize: sz(20),
-                              ),
-                            ),
-                            SizedBox(
-                              height: hsz(10),
-                            ),
-                            Text(
-                              "Instrutor Físico",
-                              style: TextStyle(
-                                color: Constants.COLORS[2],
-                                fontSize: sz(15),
-                              ),
-                            ),
-                          ],
-                        );
-                      } else if (snapshot.hasError) {
-                        children = <Widget>[
-                          Icon(
-                            Icons.error_outline,
-                            color: Colors.red,
-                            size: 60,
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.only(top: 16),
-                            child: Text('Error: ${snapshot.error}'),
-                          )
-                        ];
-                      } else {
-                        return CircularProgressIndicator();
-                      }
-                    },
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircleAvatar(
+                        radius: 56,
+                        backgroundColor: Constants.COLORS[2],
+                        child: CircleAvatar(
+                          backgroundColor: Constants.COLORS[2],
+                          backgroundImage: AssetImage(
+                              'assets/images/jpg/defaultProfilePicture.jpg'),
+                          radius: 50,
+                        ),
+                      ),
+                      SizedBox(
+                        height: hsz(10),
+                      ),
+                      Text(
+                        "Aluno Gonçalves",
+                        style: TextStyle(
+                          color: Constants.COLORS[3],
+                          fontSize: sz(20),
+                        ),
+                      ),
+                      SizedBox(
+                        height: hsz(10),
+                      ),
+                      Text(
+                        "Instrutor Físico",
+                        style: TextStyle(
+                          color: Constants.COLORS[2],
+                          fontSize: sz(15),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
-            )
+            ),
           ],
         ),
       ),
