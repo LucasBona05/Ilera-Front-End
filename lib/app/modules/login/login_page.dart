@@ -210,57 +210,18 @@ class BotaoLogin extends StatelessWidget {
           );
           try {
             Navigator.of(context).pushReplacementNamed(
-              '/home',
+              '/page_controller',
+              //'/home',
               arguments: await controller.autenticarAluno(),
             );
           } catch (e) {
-            Navigator.of(context).pushReplacement(
-              MaterialPageRoute(
-                builder: (context) => Error(),
-              ),
-            );
+            print("erro :(");
           }
         },
         child: Text(
           "login".toUpperCase(),
           style: TextStyle(
             fontSize: 20,
-          ),
-        ),
-      ),
-    );
-  }
-}
-
-class Error extends StatefulWidget {
-  @override
-  _ErrorState createState() => _ErrorState();
-}
-
-class _ErrorState extends State<Error> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Constants.COLORS[5],
-        title: Text(
-          'erro'.toUpperCase(),
-          style: TextStyle(
-              color: Constants.COLORS[0], fontFamily: 'Flood', fontSize: 35),
-        ),
-        automaticallyImplyLeading: true,
-      ),
-      body: Container(
-        width: double.infinity,
-        height: double.infinity,
-        color: Constants.COLORS[1],
-        child: Center(
-          child: Text(
-            "Erro ao realizar o login. Tente novamente",
-            style: TextStyle(
-              color: Constants.COLORS[0],
-              fontSize: 30,
-            ),
           ),
         ),
       ),

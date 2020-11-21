@@ -3,6 +3,8 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:ilera/app/models/dieta_model.dart';
 import 'package:ilera/app/models/ficha_de_treino_model.dart';
 import 'package:ilera/app/models/pessoa_model.dart';
+import 'package:ilera/app/modules/aluno_perfil/aluno_page.dart';
+import 'package:ilera/app/modules/search/search_page.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
 import 'package:simple_code/simple_code.dart';
@@ -29,6 +31,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
   @override
   void initState() {
     print(aluno.dieta.refeicoes[0].descricao);
+    this.dieta = this.aluno.dieta;
     super.initState();
   }
 
@@ -38,15 +41,8 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       ///AppBar
-      appBar: Conponents.ileraAppBar("ilera", context),
       drawer: Conponents.ileraMenuDrawer(context),
-      bottomNavigationBar: Conponents.ileraBottomAppBar(
-        () => Navigator.pushNamed(context, '/aluno', arguments: this.aluno.id),
-        Constants.COLORS[2],
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        context,
-      ),
+      appBar: Conponents.ileraAppBar("ilera", context, null),
 
       ///Body
       body: Center(

@@ -5,8 +5,10 @@ import 'constants.dart';
 
 class Conponents {
   ///AppBar
-  static AppBar ileraAppBar(String text, BuildContext context) {
+  static AppBar ileraAppBar(
+      String text, BuildContext context, List<Widget> actions) {
     return AppBar(
+      actions: actions,
       backgroundColor: Constants.COLORS[5],
       centerTitle: true,
       title: Text(
@@ -89,66 +91,6 @@ class Conponents {
       ),
     );
   }
-
-  //BottomAppBar
-  static BottomAppBar ileraBottomAppBar(
-      Function onTap, Color one, Color two, Color three, BuildContext context) {
-    Color selected = Constants.COLORS[2];
-    return BottomAppBar(
-      color: Constants.COLORS[5],
-      elevation: 10,
-      child: Padding(
-        padding: const EdgeInsets.all(10),
-        child: Row(
-          children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 27),
-              child: GestureDetector(
-                onTap: () {
-                  print("CLICADO");
-                  if (one != selected) {
-                    Navigator.pushNamed(context, "/home");
-                  }
-                },
-                child: Icon(
-                  Icons.home,
-                  color: one,
-                  size: sz(60),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 33),
-              child: GestureDetector(
-                onTap: () {
-                  print("CLICADO");
-                  if (two != selected) {
-                    Navigator.pushNamed(context, "/search");
-                  }
-                },
-                child: Icon(
-                  Icons.search,
-                  color: two,
-                  size: sz(60),
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 33),
-              child: GestureDetector(
-                onTap: onTap,
-                child: Icon(
-                  Icons.person,
-                  color: three,
-                  size: sz(60),
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
 }
 
 class BotaoPerfilInstrutor extends StatelessWidget {
@@ -191,6 +133,58 @@ class BotaoPerfilInstrutor extends StatelessWidget {
               color: Constants.COLORS[0],
               fontSize: sz(17),
             ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class BottomNavigatorBarWidget extends StatelessWidget {
+  final List<BottomNavBarItemWidget> items;
+  const BottomNavigatorBarWidget({Key key, this.items}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: hsz(70),
+      color: Constants.COLORS[5],
+      child: ListView.separated(
+        itemCount: items.length + 1,
+        physics: NeverScrollableScrollPhysics(),
+        scrollDirection: Axis.horizontal,
+        itemBuilder: (BuildContext context, int index) {
+          return index == 0 ? Container() : items[index - 1];
+        },
+        separatorBuilder: (_, i) {
+          return SizedBox(
+            width: wsz(60),
+          );
+        },
+      ),
+    );
+  }
+}
+
+class BottomNavBarItemWidget extends StatelessWidget {
+  final IconData icon;
+  final bool isActivated;
+  final Function onPressed;
+  final Color color;
+
+  const BottomNavBarItemWidget(
+      {Key key, this.icon, this.isActivated, this.onPressed, this.color})
+      : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: InkWell(
+        onTap: onPressed,
+        child: SizedBox(
+          child: Icon(
+            icon,
+            color: isActivated ? this.color : Constants.COLORS[6],
+            size: sz(40),
           ),
         ),
       ),

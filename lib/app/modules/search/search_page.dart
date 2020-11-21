@@ -46,14 +46,8 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: Conponents.ileraAppBar("Busca", context),
-      bottomNavigationBar: Conponents.ileraBottomAppBar(
-        () => Navigator.pushNamed(context, '/aluno'),
-        Constants.COLORS[0],
-        Constants.COLORS[2],
-        Constants.COLORS[0],
-        context,
-      ),
+      drawer: Conponents.ileraMenuDrawer(context),
+      appBar: Conponents.ileraAppBar("Busca", context, null),
       body: Container(
         color: Constants.COLORS[1],
         height: double.infinity,

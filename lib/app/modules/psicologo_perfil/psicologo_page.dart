@@ -17,13 +17,21 @@ class _PsicologoPageState extends State<PsicologoPage> {
   Widget build(BuildContext context) {
     PsicologoModel psicologo = widget.psicologo;
     return Scaffold(
-      appBar: Conponents.ileraAppBar("Illera", context),
-      bottomNavigationBar: Conponents.ileraBottomAppBar(
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        Constants.COLORS[0],
-        context,
-      ),
+      appBar: Conponents.ileraAppBar("Illera", context, [
+        Padding(
+          padding: const EdgeInsets.only(right: 10),
+          child: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(
+              Icons.search,
+              color: Constants.COLORS[0],
+              size: sz(26),
+            ),
+          ),
+        )
+      ]),
       body: Container(
         color: Constants.COLORS[1],
         child: ListView(
