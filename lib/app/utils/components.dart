@@ -101,7 +101,7 @@ class Conponents {
       ),
     );
   }
-
+}
 
 class BotaoPerfilInstrutor extends StatelessWidget {
   final Function onTap;
