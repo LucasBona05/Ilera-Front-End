@@ -46,6 +46,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: Conponents.ileraMenuDrawer(context),
       appBar: Conponents.ileraAppBar("Busca", context, null),
       body: Container(
         color: Constants.COLORS[1],
@@ -107,9 +108,10 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
                   : instrutores == null
                       ? Center(
                           child: Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: CircularProgressIndicator(),
-                        ))
+                            padding: const EdgeInsets.all(10.0),
+                            child: CircularProgressIndicator(),
+                          ),
+                        ) 
                       : _buscaInstrutor == "INSTRUTORES_FISICOS"
                           ? Padding(
                               padding:
