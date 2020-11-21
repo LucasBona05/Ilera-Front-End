@@ -9,10 +9,7 @@ class AlunoModule extends ChildModule {
 
   @override
   List<ModularRouter> get routers => [
-        ModularRouter('/aluno',
-            child: (_, args) => AlunoPage(
-                  idAluno: args.data,
-                )),
+        ModularRouter('/aluno', child: (_, args) => AlunoPage()),
       ];
 
   static Inject get to => Inject<AlunoModule>.of();
