@@ -132,6 +132,7 @@ class BotaoPerfilInstrutor extends StatelessWidget {
             style: TextStyle(
               color: Constants.COLORS[0],
               fontSize: sz(17),
+              decoration: TextDecoration.none,
             ),
           ),
         ),

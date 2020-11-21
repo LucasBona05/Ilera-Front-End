@@ -12,6 +12,7 @@ class InstrutorPage extends StatefulWidget {
 }
 
 class _InstrutorPageState extends State<InstrutorPage> {
+  TextEditingController perguntaController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     InstrutorModel instrutor = widget.instrutor;
@@ -110,7 +111,79 @@ class _InstrutorPageState extends State<InstrutorPage> {
                 children: [
                   BotaoPerfilInstrutor(
                     //TODO BOTAR POPUP DE PERGUNTA
-                    onTap: () {},
+                    onTap: () {
+                      setState(() {
+                        showDialog(
+                          context: context,
+                          builder: (context) {
+                            return Padding(
+                              padding:
+                                  const EdgeInsets.fromLTRB(10, 200, 10, 270),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Constants.COLORS[0],
+                                  borderRadius: BorderRadius.circular(sz(25)),
+                                ),
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      Padding(
+                                        padding: const EdgeInsets.only(top: 30),
+                                        child: Text(
+                                          "Qual a sua pergunta?",
+                                          style: TextStyle(
+                                            color: Constants.COLORS[1],
+                                            fontSize: sz(20),
+                                            decoration: TextDecoration.none,
+                                          ),
+                                        ),
+                                      ),
+                                      Padding(
+                                        padding: const EdgeInsets.fromLTRB(
+                                            20, 30, 20, 20),
+                                        child: Material(
+                                          child: Container(
+                                            height: hsz(100),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(sz(22)),
+                                              color: Colors.grey[300],
+                                            ),
+                                            child: Padding(
+                                              padding:
+                                                  const EdgeInsets.fromLTRB(
+                                                      15, 10, 15, 10),
+                                              child: TextFormField(
+                                                controller: perguntaController,
+                                                maxLines: 5,
+                                                decoration: InputDecoration(
+                                                  labelText: 'Escreva aqui...',
+                                                  border: InputBorder.none,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      BotaoPerfilInstrutor(
+                                        color: Constants.COLORS[3],
+                                        height: hsz(40),
+                                        width: wsz(150),
+                                        //TODO
+                                        onTap: () {
+                                          Navigator.pop(context);
+                                        },
+                                        text: "Perguntar",
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        );
+                      });
+                    },
                     height: hsz(40),
                     width: wsz(150),
                     color: Constants.COLORS[3],

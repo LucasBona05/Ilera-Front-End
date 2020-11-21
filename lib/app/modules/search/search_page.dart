@@ -111,7 +111,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
                             padding: const EdgeInsets.all(10.0),
                             child: CircularProgressIndicator(),
                           ),
-                        ) 
+                        )
                       : _buscaInstrutor == "INSTRUTORES_FISICOS"
                           ? Padding(
                               padding:
