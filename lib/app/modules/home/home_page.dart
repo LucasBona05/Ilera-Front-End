@@ -7,6 +7,7 @@ import 'package:ilera/app/modules/aluno_perfil/aluno_page.dart';
 import 'package:ilera/app/modules/search/search_page.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
+import 'package:ilera/app/utils/drawer/menuDrawer.dart';
 import 'package:simple_code/simple_code.dart';
 
 import 'home_controller.dart';
@@ -41,7 +42,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
     double width = MediaQuery.of(context).size.width;
     return Scaffold(
       ///AppBar
-      drawer: Conponents.ileraMenuDrawer(context),
+      drawer: MenuDrawerAluno(),
       appBar: Conponents.ileraAppBar("ilera", context, null),
 
       ///Body

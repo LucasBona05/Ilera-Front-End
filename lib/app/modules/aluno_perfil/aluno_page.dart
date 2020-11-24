@@ -5,6 +5,7 @@ import 'package:ilera/app/models/pessoa_model.dart';
 import 'package:ilera/app/modules/aluno_perfil/aluno_controller.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
+import 'package:ilera/app/utils/drawer/menuDrawer.dart';
 import 'package:simple_code/simple_code.dart';
 
 class AlunoPage extends StatefulWidget {
@@ -31,7 +32,7 @@ class _AlunoPageState extends ModularState<AlunoPage, AlunoController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Conponents.ileraMenuDrawer(context),
+      drawer: MenuDrawerAluno(),
       appBar: Conponents.ileraAppBar("Ilera", context, null),
       body: Container(
         color: Constants.COLORS[1],

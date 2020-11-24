@@ -5,6 +5,7 @@ import 'package:ilera/app/app_widget.dart';
 import 'package:ilera/app/modules/aluno_perfil/aluno_controller.dart';
 import 'package:ilera/app/modules/cadastro/cadastro_controller.dart';
 import 'package:ilera/app/modules/cadastro/cadastro_module.dart';
+import 'package:ilera/app/modules/editar_aluno/editar_aluno_module.dart';
 import 'package:ilera/app/modules/home/home_controller.dart';
 import 'package:ilera/app/modules/home/home_module.dart';
 import 'package:ilera/app/modules/login/login_controller.dart';
@@ -66,6 +67,7 @@ class AppModule extends MainModule {
         ModularRouter('/search', module: SearchModule()),
         ModularRouter('/aluno', module: AlunoModule()),
         ModularRouter('/page_controller', module: PageControllerModule()),
+        ModularRouter('/editar_perfil_aluno', module: EditarAlunoModule())
       ];
 
   @override

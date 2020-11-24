@@ -9,6 +9,7 @@ import 'package:ilera/app/modules/psicologo_perfil/psicologo_page.dart';
 import 'package:ilera/app/modules/search/search_controller.dart';
 import 'package:ilera/app/utils/components.dart';
 import 'package:ilera/app/utils/constants.dart';
+import 'package:ilera/app/utils/drawer/menuDrawer.dart';
 import 'package:simple_code/simple_code.dart';
 
 class SearchPage extends StatefulWidget {
@@ -46,7 +47,7 @@ class _SearchPageState extends ModularState<SearchPage, SearchController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Conponents.ileraMenuDrawer(context),
+      drawer: MenuDrawerAluno(),
       appBar: Conponents.ileraAppBar("Busca", context, null),
       body: Container(
         color: Constants.COLORS[1],
